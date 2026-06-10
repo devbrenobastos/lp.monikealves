@@ -56,13 +56,13 @@ export const QuemSouEu: React.FC = () => {
   };
 
   const renderHeading = () => {
-    const baseText = "Oi, eu sou a ";
+    const baseText = "Oi, eu sou a";
     const nameText = "Monike Alves.";
     const isTypingFinished = index >= baseText.length + nameText.length;
 
     return (
       <h2 ref={containerRef} className="font-serif text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight mb-[20px] min-h-[48px] select-none text-wrap-balance">
-        <span><T>{baseText}</T></span>
+        <span><T>{baseText}</T></span>{" "}
         {isVisible && (
           <span className="text-olive not-italic italic font-normal">
             <T>{nameText.slice(0, Math.max(0, index - baseText.length))}</T>
