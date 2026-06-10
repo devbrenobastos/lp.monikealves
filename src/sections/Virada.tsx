@@ -28,11 +28,11 @@ export const Virada: React.FC = () => {
           </p>
         </div>
 
-        <div className="reveal-item max-w-[30ch] mx-auto flex flex-col items-start text-left border-l-2 border-l-olive pl-6 relative">
+        <div className="reveal-item max-w-[52ch] mx-auto flex flex-col items-start text-left border-l-2 border-l-olive pl-6 relative">
           <span className="absolute -top-8 -left-4 font-serif text-[80px] text-olive opacity-25 leading-none select-none">“</span>
           
-          <blockquote className="font-serif text-[28px] text-ink italic leading-[1.35] tracking-[0.01em]">
-            <Typewriter text="O problema quase nunca é o quanto você investe. É o que está montado por trás do botão 'promover'." />
+          <blockquote className="font-serif text-[28px] text-ink italic leading-[1.35] tracking-[0.01em] whitespace-pre-line">
+            <Typewriter text={"O problema quase nunca é o quanto você investe.\nÉ o que está montado por trás do botão 'promover'."} />
           </blockquote>
 
           <cite className="not-italic font-mono text-[11px] tracking-[0.18em] text-ink-3 uppercase mt-4 block">
