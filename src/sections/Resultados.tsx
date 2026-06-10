@@ -143,7 +143,7 @@ export const Resultados: React.FC = () => {
         </div>
 
         {/* Case Study Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-48 lg:mb-64">
           {/* Cases Column */}
           <div className="lg:col-span-7 flex flex-col justify-between">
             {/* Stacked vertically, left-aligned on mobile */}
@@ -226,20 +226,20 @@ export const Resultados: React.FC = () => {
         </div>
 
         {/* Stats Summary strip - Centered on mobile with subtle dividers, 3 columns on desktop */}
-        <div className="reveal-item border-t border-cream pt-8 grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-6 text-center sm:text-left divide-y divide-cream/45 sm:divide-y-0">
-          <div className="py-4 sm:py-0 flex flex-col items-center sm:items-start">
+        <div className="reveal-item border-t-0 sm:border-t border-cream pt-0 sm:pt-8 grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-24 text-center sm:text-left divide-y divide-cream/45 sm:divide-y-0">
+          <div className="py-24 sm:py-0 flex flex-col items-center sm:items-start">
             <span className="font-mono text-mono-data text-amber font-semibold block mb-1">
               <CountUp end={5} prefix="+" suffix="MM" />
             </span>
             <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>em vendas geradas</T></span>
           </div>
-          <div className="py-4 sm:py-0 flex flex-col items-center sm:items-start sm:border-x border-cream sm:px-6">
+          <div className="py-24 sm:py-0 flex flex-col items-center sm:items-start sm:border-x border-cream sm:px-6">
             <span className="font-mono text-mono-data text-ink font-semibold block mb-1">
               <CountUp end={10.4} decimals={1} suffix="k" />
             </span>
             <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>acompanham no Instagram</T></span>
           </div>
-          <div className="py-4 sm:py-0 flex flex-col items-center sm:items-start sm:px-6">
+          <div className="py-24 sm:py-0 flex flex-col items-center sm:items-start sm:px-6">
             <span className="font-mono text-mono-data text-ink font-semibold block mb-1">
               <CountUp end={200} prefix="+" />
             </span>

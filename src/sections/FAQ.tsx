@@ -49,18 +49,18 @@ export const FAQ: React.FC = () => {
     <section id="faq" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
       <div 
         ref={revealRef}
-        className="max-w-content mx-auto px-5 md:px-10 flex flex-col md:flex-row gap-[clamp(40px,5vw,80px)]"
+        className="max-w-content mx-auto px-5 md:px-10 flex flex-col items-center gap-[40px] md:gap-[60px]"
       >
-        {/* Left column (sticky header only on desktop) */}
-        <div className="reveal-item w-full md:w-[38%] md:sticky md:top-[104px] self-start text-left flex flex-col items-start">
-          <Eyebrow className="mb-[12px]">PERGUNTAS FREQUENTES</Eyebrow>
+        {/* Centered header block */}
+        <div className="reveal-item w-full max-w-[62ch] text-center flex flex-col items-center">
+          <Eyebrow className="mb-[12px]">FAQ</Eyebrow>
           <h2 className="font-sans text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight">
-            FAQ
+            <T>Perguntas Frequentes</T>
           </h2>
         </div>
 
-        {/* Right column (accordions full-width) */}
-        <div className="reveal-item w-full md:w-[62%]">
+        {/* Accordions centered block */}
+        <div className="reveal-item w-full max-w-[800px]">
           <Accordion type="single" collapsible className="w-full">
             {faqItems.map((item) => (
               <AccordionItem 
