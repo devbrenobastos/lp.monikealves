@@ -32,13 +32,13 @@ export const PorQueMonike: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-paper border-b border-cream">
+    <section className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
       <div 
         ref={revealRef}
-        className="max-w-content mx-auto px-6 md:px-10"
+        className="max-w-content mx-auto px-5 md:px-10"
       >
-        {/* Intro block in 2 columns */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-[clamp(40px,5vw,80px)] mb-16">
+        {/* Intro block in 2 columns (stacks naturally on mobile, title then description) */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-[clamp(40px,5vw,80px)] mb-12">
           <div className="reveal-item w-full md:w-[48%]">
             <Eyebrow className="mb-6">POR QUE A MONIKE</Eyebrow>
             <h2 className="font-sans text-[32px] md:text-[40px] text-ink font-light leading-tight">
@@ -53,14 +53,14 @@ export const PorQueMonike: React.FC = () => {
           </div>
         </div>
 
-        {/* 4 columns inline hairline layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-cream mt-[64px] border-t border-cream pt-12">
+        {/* 4 columns layout: stacks into 1 column with divider on mobile, 4 columns with vertical lines on desktop */}
+        <div className="flex flex-col lg:flex-row divide-y divide-cream lg:divide-y-0 lg:divide-x lg:divide-cream mt-[48px] lg:mt-[64px] border-t border-cream pt-4 lg:pt-12">
           {reasons.map((reason, idx) => {
             const Icon = [Target, Layers, Users, HeartHandshake][idx];
             return (
               <div 
                 key={idx} 
-                className="reveal-item flex flex-col items-start lg:px-6 first:pl-0 last:pr-0"
+                className="reveal-item flex flex-col items-start py-8 lg:py-0 lg:px-6 first:pt-4 lg:first:pt-0 last:pb-4 lg:last:pb-0 first:pl-0 last:pr-0"
               >
                 <div className="text-olive mb-6">
                   <Icon className="w-5 h-5 stroke-[1.5]" />
@@ -71,7 +71,7 @@ export const PorQueMonike: React.FC = () => {
                 <h3 className="font-serif text-[20px] text-ink font-normal mb-3 leading-tight min-h-[2.5rem] flex items-end">
                   <Balance>{reason.title}</Balance>
                 </h3>
-                <p className="font-sans text-[15px] text-ink-2 leading-relaxed">
+                <p className="font-sans text-[16px] md:text-[15px] text-ink-2 leading-relaxed">
                   <T>{reason.desc}</T>
                 </p>
               </div>

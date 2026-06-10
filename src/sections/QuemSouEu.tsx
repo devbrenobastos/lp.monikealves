@@ -41,7 +41,8 @@ export const QuemSouEu: React.FC = () => {
     e.preventDefault();
     const ctaSection = document.getElementById('aplicar');
     if (ctaSection) {
-      ctaSection.scrollIntoView({ behavior: 'smooth' });
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      ctaSection.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     }
   };
 
@@ -89,25 +90,22 @@ export const QuemSouEu: React.FC = () => {
   };
 
   return (
-    <section id="sobre" className="py-20 md:py-32 bg-paper border-b border-cream">
+    <section id="sobre" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
       <div 
         ref={revealRef}
-        className="max-w-content mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center"
+        className="max-w-content mx-auto px-5 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center"
       >
         {/* Left: Text & Bio in First Person */}
         <div className="reveal-item md:col-span-7">
           <Eyebrow className="mb-[12px]">QUEM TE ATENDE</Eyebrow>
           {renderHeading()}
           
-          <div className="font-sans text-body text-ink-2 space-y-4 max-w-[62ch] mb-[40px] leading-relaxed">
+          <div className="font-sans text-[16px] text-ink-2 space-y-4 max-w-[62ch] mb-[40px] leading-relaxed">
             <p>
               <T>Sou gestora de tráfego e estrategista de vendas, e escolhi um caminho só: fazer a Dra. de harmonização virar a referência da sua cidade.</T>
             </p>
             <p>
               <T>Aprendi na prática que o talento na cadeira não basta — quem aparece e sabe vender é quem lota a agenda. Hoje meu trabalho é juntar as duas coisas: te colocar na frente das pacientes certas e te dar a estrutura para transformar atenção em faturamento.</T>
-            </p>
-            <p className="italic text-ink-3">
-              {/* Espaço para frases pessoais reais da Monike */}
             </p>
           </div>
 

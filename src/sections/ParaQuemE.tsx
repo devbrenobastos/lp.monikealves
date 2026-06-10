@@ -20,23 +20,23 @@ export const ParaQuemE: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-paper border-b border-cream">
+    <section className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
       <div 
         ref={revealRef}
-        className="max-w-content mx-auto px-6 md:px-10"
+        className="max-w-content mx-auto px-5 md:px-10"
       >
         {/* Header Block */}
         <div className="reveal-item max-w-[62ch] mb-12">
           <Eyebrow className="mb-6">É PARA VOCÊ SE</Eyebrow>
-          <h2 className="font-sans text-[32px] md:text-[40px] text-ink font-light leading-tight">
+          <h2 className="font-sans text-[clamp(28px,6vw,40px)] text-ink font-light leading-tight">
             <T>Esse trabalho é para um tipo de Dra.</T> <em className="font-serif text-olive not-italic italic font-normal"><T>específica</T></em>
           </h2>
         </div>
 
-        {/* 2 Stylized Panels */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* 2 Stylized Panels: stack on mobile with 20px gap, 2 columns on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
           {/* Panel 1: É para você se */}
-          <div className="reveal-item bg-olive/[0.07] border border-cream rounded-[16px] p-[36px] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(28,26,22,0.06)] transition-all duration-300 flex flex-col justify-between">
+          <div className="reveal-item bg-olive/[0.07] border border-cream rounded-[16px] p-6 md:p-[36px] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(28,26,22,0.06)] transition-all duration-300 flex flex-col justify-between">
             <div>
               <div className="border-b border-cream pb-4 mb-6">
                 <Eyebrow className="mb-0 bg-transparent border-none p-0">É para você se</Eyebrow>
@@ -47,7 +47,7 @@ export const ParaQuemE: React.FC = () => {
                     <div className="w-[20px] h-[20px] rounded-full border border-olive flex items-center justify-center text-olive flex-shrink-0 mt-0.5" aria-hidden="true">
                       <Check className="w-[12px] h-[12px] stroke-[2.5]" />
                     </div>
-                    <p className="font-sans text-body text-ink-2 leading-relaxed">
+                    <p className="font-sans text-[16px] text-ink-2 leading-relaxed">
                       <T>{item}</T>
                     </p>
                   </li>
@@ -57,7 +57,7 @@ export const ParaQuemE: React.FC = () => {
           </div>
 
           {/* Panel 2: Não é para você se */}
-          <div className="reveal-item bg-panel border border-cream rounded-[16px] p-[36px] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(28,26,22,0.06)] transition-all duration-300 flex flex-col justify-between">
+          <div className="reveal-item bg-panel border border-cream rounded-[16px] p-6 md:p-[36px] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(28,26,22,0.06)] transition-all duration-300 flex flex-col justify-between">
             <div>
               <div className="border-b border-cream pb-4 mb-6">
                 <Eyebrow className="mb-0 bg-transparent border-none p-0">Não é para você se</Eyebrow>
@@ -68,7 +68,7 @@ export const ParaQuemE: React.FC = () => {
                     <div className="w-[20px] h-[20px] rounded-full border border-terra flex items-center justify-center text-terra flex-shrink-0 mt-0.5" aria-hidden="true">
                       <X className="w-[12px] h-[12px] stroke-[2.5]" />
                     </div>
-                    <p className="font-sans text-body text-ink-2 leading-relaxed">
+                    <p className="font-sans text-[16px] text-ink-2 leading-relaxed">
                       <T>{item}</T>
                     </p>
                   </li>

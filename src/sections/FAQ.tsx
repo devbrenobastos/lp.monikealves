@@ -31,12 +31,12 @@ export const FAQ: React.FC = () => {
     {
       id: "q5",
       q: "Em quanto tempo vejo resultado?",
-      a: "Os primeiros sinais costumam aparecer nas primeiras semanas, mas resultado consistente é construção. Eu trabalho com poucas clínicas justamente para acompanhar isso de perto. [ajustar conforme a realidade dela]"
+      a: "Os primeiros sinais costumam aparecer nas primeiras semanas, mas resultado consistente é construção. Eu trabalho com poucas clínicas justamente para acompanhar isso de perto."
     },
     {
       id: "q6",
       q: "O que está incluso?",
-      a: "Gestão de tráfego, treinamento do time comercial e roteiro + edição dos criativos. O escopo exato a gente fecha depois do diagnóstico. [CONFIRMAR escopo/planos]"
+      a: "Gestão de tráfego, treinamento do time comercial e roteiro + edição dos criativos. O escopo exato a gente fecha depois do diagnóstico."
     },
     {
       id: "q7",
@@ -46,20 +46,20 @@ export const FAQ: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 md:py-32 bg-paper border-b border-cream">
+    <section id="faq" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
       <div 
         ref={revealRef}
-        className="max-w-content mx-auto px-6 md:px-10 flex flex-col md:flex-row gap-[clamp(40px,5vw,80px)]"
+        className="max-w-content mx-auto px-5 md:px-10 flex flex-col md:flex-row gap-[clamp(40px,5vw,80px)]"
       >
-        {/* Left column (sticky cabeçalho) - w-full md:w-[38%] */}
+        {/* Left column (sticky header only on desktop) */}
         <div className="reveal-item w-full md:w-[38%] md:sticky md:top-[104px] self-start">
           <Eyebrow className="mb-[16px]">PERGUNTAS FREQUENTES</Eyebrow>
-          <h2 className="font-sans text-[32px] text-ink font-light leading-tight">
+          <h2 className="font-sans text-[clamp(28px,6vw,40px)] text-ink font-light leading-tight">
             FAQ
           </h2>
         </div>
 
-        {/* Right column - w-full md:w-[62%] */}
+        {/* Right column (accordions full-width) */}
         <div className="reveal-item w-full md:w-[62%]">
           <Accordion type="single" collapsible className="w-full">
             {faqItems.map((item) => (
@@ -68,10 +68,10 @@ export const FAQ: React.FC = () => {
                 value={item.id} 
                 className="border-b border-cream py-1"
               >
-                <AccordionTrigger className="font-sans font-medium text-[18px] text-ink hover:text-olive transition-colors py-[20px] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive pr-4 text-left">
+                <AccordionTrigger className="font-sans font-medium text-[16px] md:text-[18px] text-ink hover:text-olive transition-colors py-[20px] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive pr-4 text-left">
                   <T>{item.q}</T>
                 </AccordionTrigger>
-                <AccordionContent className="font-sans text-[15px] text-ink-2 leading-relaxed max-w-[62ch] pb-[20px]">
+                <AccordionContent className="font-sans text-[16px] md:text-[15px] text-ink-2 leading-relaxed max-w-[62ch] pb-[20px]">
                   <T>{item.a}</T>
                 </AccordionContent>
               </AccordionItem>

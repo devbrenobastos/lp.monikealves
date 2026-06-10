@@ -37,12 +37,12 @@ export default {
         mono: ["var(--mono)"],
       },
       fontSize: {
-        'display-xl': ['clamp(2.3rem, 1.6rem + 2.8vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }], // max 56px, weight light sans / Fraunces italic accent
-        'display-l': ['clamp(1.8rem, 1.4rem + 2vw, 2.75rem)', { lineHeight: '1.15', letterSpacing: '-0.02em' }], // max 44px
-        'display-m': ['clamp(1.5rem, 1.2rem + 1.2vw, 1.875rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }], // max 30px
-        'body-l': ['clamp(1.0625rem, 1rem + 0.3vw, 1.125rem)', { lineHeight: '1.6' }], // max 18px
+        'display-xl': ['clamp(1.75rem, 1.25rem + 2.5vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }], // min 28px, max 56px
+        'display-l': ['clamp(1.625rem, 1.2rem + 2vw, 2.75rem)', { lineHeight: '1.15', letterSpacing: '-0.02em' }], // min 26px, max 44px
+        'display-m': ['clamp(1.375rem, 1.1rem + 1.2vw, 1.875rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }], // min 22px, max 30px
+        'body-l': ['clamp(1.0625rem, 1rem + 0.3vw, 1.125rem)', { lineHeight: '1.6' }],
         'body': ['1rem', { lineHeight: '1.6' }], // 16px
-        'body-s': ['0.875rem', { lineHeight: '1.5' }], // 14px
+        'body-s': ['0.875rem', { lineHeight: '1.5' }], // 14px (md and up)
         'mono-eyebrow': ['0.6875rem', { lineHeight: '1', letterSpacing: '0.2em' }], // 11px
         'mono-data': ['clamp(1.25rem, 1rem + 1vw, 1.875rem)', { letterSpacing: '-0.02em' }], // max 30px
       },
