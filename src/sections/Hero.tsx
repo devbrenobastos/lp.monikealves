@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { T } from '../components/T';
 import { ArrowRight } from 'lucide-react';
 import { Eyebrow } from '../components/Eyebrow';
@@ -13,6 +13,60 @@ import Hero1100Avif from '../assets/Hero-1100.avif';
 import Hero1400Webp from '../assets/Hero-1400.webp';
 import Hero1400Avif from '../assets/Hero-1400.avif';
 import HeroImgFallback from '../assets/Hero-1100.webp';
+
+// Viewport-triggered count-up animation component
+const CountUp: React.FC<{ end: number; decimals?: number; duration?: number; prefix?: string; suffix?: string }> = ({ 
+  end, 
+  decimals = 0,
+  duration = 1500, 
+  prefix = '', 
+  suffix = '' 
+}) => {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef<HTMLSpanElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      setCount(end);
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !hasAnimated) {
+        setHasAnimated(true);
+        let startTimestamp: number | null = null;
+        const step = (timestamp: number) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const MathProgress = Math.min((timestamp - startTimestamp) / duration, 1);
+          setCount(MathProgress * end);
+          if (MathProgress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        window.requestAnimationFrame(step);
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [end, duration, hasAnimated]);
+
+  const formattedCount = decimals > 0 
+    ? count.toFixed(decimals).replace('.', ',') 
+    : Math.floor(count).toString();
+
+  return (
+    <span ref={elementRef}>
+      {prefix}{formattedCount}{suffix}
+    </span>
+  );
+};
 
 export const Hero: React.FC = () => {
   const handleApplyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -157,24 +211,24 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Social Proof Stats Bar - Centered on mobile with subtle dividers, 3 columns on desktop */}
+      {/* Social Proof Stats Bar - Centered on mobile and desktop with subtle dividers, 3 columns */}
       <div className="bg-paper border-b border-cream py-[24px] sm:py-[32px] mt-0">
-        <div className="max-w-content mx-auto px-5 md:px-10 grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-6 text-center sm:text-left divide-y divide-cream/45 sm:divide-y-0 pt-2">
-          <div className="flex flex-col items-center sm:items-start sm:border-r sm:border-cream sm:pr-6 py-4 sm:py-0">
-            <span className="font-mono text-mono-data text-amber font-medium">
-              <T>+5MM</T>
+        <div className="max-w-content mx-auto px-5 md:px-10 grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-6 text-center divide-y divide-cream/45 sm:divide-y-0 pt-2">
+          <div className="flex flex-col items-center sm:border-r sm:border-cream sm:pr-6 py-4 sm:py-0">
+            <span className="font-mono text-mono-data text-amber font-semibold">
+              <CountUp end={5} prefix="+" suffix="MM" />
             </span>
             <span className="font-sans text-body-s text-ink-2"><T>em vendas geradas</T></span>
           </div>
-          <div className="flex flex-col items-center sm:items-start sm:border-r sm:border-cream sm:pr-6 sm:pl-6 py-4 sm:py-0">
-            <span className="font-mono text-mono-data text-ink font-medium">
-              <T>10,4k</T>
+          <div className="flex flex-col items-center sm:border-r sm:border-cream sm:px-6 py-4 sm:py-0">
+            <span className="font-mono text-mono-data text-ink font-semibold">
+              <CountUp end={10.4} decimals={1} suffix="k" />
             </span>
             <span className="font-sans text-body-s text-ink-2"><T>acompanham no Instagram</T></span>
           </div>
-          <div className="flex flex-col items-center sm:items-start sm:pl-6 py-4 sm:py-0">
-            <span className="font-mono text-mono-data text-ink font-medium">
-              +200
+          <div className="flex flex-col items-center sm:pl-6 py-4 sm:py-0">
+            <span className="font-mono text-mono-data text-ink font-semibold">
+              <CountUp end={200} prefix="+" />
             </span>
             <span className="font-sans text-body-s text-ink-2"><T>Dras. atendidas</T></span>
           </div>
