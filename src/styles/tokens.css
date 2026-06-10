@@ -1,0 +1,31 @@
+/* Design Tokens — Monike Alves */
+:root {
+  /* Light — base da landing */
+  --paper:      #F4F1EE;  /* fundo */
+  --panel:      #EDE7E0;  /* cards/blocos levantados */
+  --cream:      #DDD8D4;  /* linhas, bordas, divisores */
+  --mist:       #C7BEB9;  /* neutro de apoio */
+  --ink:        #1C1A16;  /* texto principal (carvão quente) */
+  --ink-2:      #3D3A35;  /* texto secundário */
+  --ink-3:      #8C887F;  /* legendas/terciário */
+
+  /* Oliva — marca / ação */
+  --olive:      #6A8E38;  /* CTA, grifos, acento */
+  --olive-h:    #7FAA42;  /* hover / sobre escuro */
+  --olive-d:    #475E27;  /* eyebrows, detalhes */
+
+  /* Dark — seção-âncora (reaproveita o dashboard) */
+  --d-bg:       #0F110D;
+  --d-surface:  #161A10;
+  --d-elevated: #1E2415;
+  --d-line:     rgba(199, 190, 185, 0.16);
+
+  /* Detalhes — uso cirúrgico, nunca dominante */
+  --amber:      #C4953A;  /* números de dinheiro */
+  --amethyst:   #8E5E9E;  /* conversão */
+  --terra:      #B04A3F;  /* dor / lado "tradicional" */
+
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
