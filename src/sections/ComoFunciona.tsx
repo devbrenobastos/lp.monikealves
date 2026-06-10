@@ -65,7 +65,7 @@ export const ComoFunciona: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-[clamp(56px,9vw,80px)] md:py-[clamp(80px,10vw,140px)] bg-d-bg text-paper relative overflow-hidden">
+    <section ref={sectionRef} className="py-[clamp(56px,9vw,80px)] md:py-[clamp(80px,10vw,140px)] bg-d-bg text-paper relative overflow-hidden content-visibility-auto">
       {/* Editorial dark line accents */}
       <div className="absolute inset-0 bg-gradient-to-b from-d-surface to-d-bg pointer-events-none opacity-40 z-0"></div>
 

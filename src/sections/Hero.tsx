@@ -2,7 +2,17 @@ import React from 'react';
 import { T } from '../components/T';
 import { ArrowRight } from 'lucide-react';
 import { Eyebrow } from '../components/Eyebrow';
-import HeroImg from '../assets/Hero.jpg';
+import Hero360Webp from '../assets/Hero-360.webp';
+import Hero360Avif from '../assets/Hero-360.avif';
+import Hero480Webp from '../assets/Hero-480.webp';
+import Hero480Avif from '../assets/Hero-480.avif';
+import Hero768Webp from '../assets/Hero-768.webp';
+import Hero768Avif from '../assets/Hero-768.avif';
+import Hero1100Webp from '../assets/Hero-1100.webp';
+import Hero1100Avif from '../assets/Hero-1100.avif';
+import Hero1400Webp from '../assets/Hero-1400.webp';
+import Hero1400Avif from '../assets/Hero-1400.avif';
+import HeroImgFallback from '../assets/Hero-1100.webp';
 
 export const Hero: React.FC = () => {
   const handleApplyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -73,11 +83,28 @@ export const Hero: React.FC = () => {
         {/* Editorial Portrait - Second on mobile (order-2), right on desktop (md:order-2) */}
         <div className="order-2 md:order-2 w-full md:col-span-5 relative self-stretch md:h-full min-h-[300px] md:min-h-[500px] flex items-center justify-start animate-photo-reveal">
           <div className="relative w-full md:w-[95%] aspect-[4/5] md:aspect-auto bg-panel rounded-[16px] md:rounded-[20px] overflow-hidden border border-cream h-full flex items-center justify-center">
-            <img 
-              src={HeroImg} 
-              alt="Monike Alves - Marketing e Vendas para HOF" 
-              className="absolute inset-0 w-full h-full object-cover z-0"
-            />
+            <picture className="absolute inset-0 w-full h-full z-0">
+              <source 
+                type="image/avif" 
+                srcSet={`${Hero360Avif} 360w, ${Hero480Avif} 480w, ${Hero768Avif} 768w, ${Hero1100Avif} 1100w, ${Hero1400Avif} 1400w`}
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
+              <source 
+                type="image/webp" 
+                srcSet={`${Hero360Webp} 360w, ${Hero480Webp} 480w, ${Hero768Webp} 768w, ${Hero1100Webp} 1100w, ${Hero1400Webp} 1400w`}
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
+              <img 
+                src={HeroImgFallback} 
+                alt="Monike Alves - Marketing e Vendas para HOF" 
+                className="w-full h-full object-cover"
+                width="480"
+                height="600"
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
           </div>
           
           {/* Monogram circular badge (smaller on mobile) */}

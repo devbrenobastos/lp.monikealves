@@ -7,26 +7,19 @@
     <title>Monike Alves — Marketing e Vendas para Harmonização (HOF)</title>
     <meta name="description" content="Tráfego, time comercial e conteúdo para clínicas de harmonização lotarem a agenda e venderem mais. Aplique-se para uma análise da sua clínica." />
     
-    <!-- Google Fonts Preconnect and async loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    <!-- Preload critical local fonts -->
+    <link rel="preload" href="/fonts/-nFhOHM81r4j6k0gjAW3mujVU2B2G_VB0PD2.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/rP2Hp2ywxg089UriCZOIHQ.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Preload Hero LCP Image responsively -->
+    <link 
+      rel="preload" 
+      as="image" 
+      href="/src/assets/Hero-768.avif" 
+      imagesrcset="/src/assets/Hero-360.avif 360w, /src/assets/Hero-480.avif 480w, /src/assets/Hero-768.avif 768w, /src/assets/Hero-1100.avif 1100w, /src/assets/Hero-1400.avif 1400w" 
+      imagesizes="(max-width: 768px) 100vw, 40vw"
+      fetchpriority="high"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
   </head>
   <body>
     <div id="root"></div>

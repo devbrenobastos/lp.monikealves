@@ -70,7 +70,7 @@ export const CTAFinal: React.FC = () => {
   };
 
   return (
-    <section id="aplicar" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-panel border-b border-cream">
+    <section id="aplicar" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-panel border-b border-cream content-visibility-auto">
       <div 
         ref={revealRef}
         className="max-w-content mx-auto px-5 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative"

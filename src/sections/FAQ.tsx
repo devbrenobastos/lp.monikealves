@@ -46,7 +46,7 @@ export const FAQ: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
+    <section id="faq" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream content-visibility-auto">
       <div 
         ref={revealRef}
         className="max-w-content mx-auto px-5 md:px-10 flex flex-col items-center gap-[40px] md:gap-[60px]"

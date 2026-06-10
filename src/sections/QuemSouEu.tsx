@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useReveal } from '../hooks/useReveal';
 import { T } from '../components/T';
 import { Eyebrow } from '../components/Eyebrow';
-import SobreImg from '../assets/Sobre Monike.jpg';
+import Sobre360Webp from '../assets/Sobre Monike-360.webp';
+import Sobre360Avif from '../assets/Sobre Monike-360.avif';
+import Sobre480Webp from '../assets/Sobre Monike-480.webp';
+import Sobre480Avif from '../assets/Sobre Monike-480.avif';
+import Sobre768Webp from '../assets/Sobre Monike-768.webp';
+import Sobre768Avif from '../assets/Sobre Monike-768.avif';
+import Sobre1100Webp from '../assets/Sobre Monike-1100.webp';
+import Sobre1100Avif from '../assets/Sobre Monike-1100.avif';
+import SobreImgFallback from '../assets/Sobre Monike-480.webp';
 
 export const QuemSouEu: React.FC = () => {
   const revealRef = useReveal();
@@ -48,65 +56,42 @@ export const QuemSouEu: React.FC = () => {
   };
 
   const renderHeading = () => {
-    if (prefersReduced) {
-      return (
-        <h2 ref={containerRef} className="font-serif text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight mb-[20px]">
-          <T>Oi, eu sou a</T> <em className="text-olive not-italic italic font-normal"><T>Monike Alves.</T></em>
-        </h2>
-      );
-    }
-
     const baseText = "Oi, eu sou a ";
     const nameText = "Monike Alves.";
-
-    let visibleBase = "";
-    let invisibleBase = baseText;
-    let visibleName = "";
-    let invisibleName = nameText;
-
-    if (index <= baseText.length) {
-      visibleBase = baseText.slice(0, index);
-      invisibleBase = baseText.slice(index);
-    } else {
-      visibleBase = baseText;
-      invisibleBase = "";
-      const nameIndex = index - baseText.length;
-      visibleName = nameText.slice(0, nameIndex);
-      invisibleName = nameText.slice(nameIndex);
-    }
-
-    const showCursor = index < 26;
+    const isTypingFinished = index >= baseText.length + nameText.length;
 
     return (
-      <h2 ref={containerRef} className="font-serif text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight mb-[20px] select-none" aria-label="Oi, eu sou a Monike Alves.">
-        <span>{visibleBase}</span>
-        {visibleName && <em className="text-olive not-italic italic font-normal">{visibleName}</em>}
-        {showCursor && <span className="cursor-blink" aria-hidden="true">|</span>}
-        <span className="opacity-0 select-none pointer-events-none" aria-hidden="true">
-          {invisibleBase}
-          <em className="text-olive not-italic italic font-normal">{invisibleName}</em>
-        </span>
+      <h2 ref={containerRef} className="font-serif text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight mb-[20px] min-h-[48px] select-none text-wrap-balance">
+        <span><T>{baseText}</T></span>
+        {isVisible && (
+          <span className="text-olive not-italic italic font-normal">
+            <T>{nameText.slice(0, Math.max(0, index - baseText.length))}</T>
+          </span>
+        )}
+        {!isTypingFinished && (
+          <span className="inline-block w-[2px] h-[0.8em] bg-olive ml-1 animate-pulse" style={{ verticalAlign: 'middle' }} />
+        )}
       </h2>
     );
   };
 
   return (
-    <section id="sobre" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
+    <section id="quem-sou-eu" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
       <div 
         ref={revealRef}
-        className="max-w-content mx-auto px-5 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center"
+        className="max-w-content mx-auto px-5 md:px-10 flex flex-col md:grid md:grid-cols-12 gap-12 items-start"
       >
-        {/* Left: Text & Bio in First Person */}
-        <div className="reveal-item md:col-span-7">
-          <Eyebrow className="mb-[12px]">QUEM TE ATENDE</Eyebrow>
-          {renderHeading()}
-          
-          <div className="font-sans text-[16px] text-ink-2 space-y-4 max-w-[62ch] mb-[40px] leading-relaxed">
-            <p>
-              <T>Sou gestora de tráfego e estrategista de vendas, e escolhi um caminho só: fazer a Dra. de harmonização virar a referência da sua cidade.</T>
+        {/* Left: Bio Info */}
+        <div className="reveal-item md:col-span-7 flex flex-col justify-center h-full text-left items-start">
+          <div className="flex flex-col items-start">
+            <Eyebrow className="mb-[12px]">QUEM TE ATENDE</Eyebrow>
+            {renderHeading()}
+            
+            <p className="font-sans text-[16px] text-ink-2 mb-[16px] leading-relaxed max-w-[54ch]">
+              <T>Publicitária por formação com mais de 7 anos de experiência em marketing digital focado em negócios locais e serviços de saúde.</T>
             </p>
-            <p>
-              <T>Aprendi na prática que o talento na cadeira não basta — quem aparece e sabe vender é quem lota a agenda. Hoje meu trabalho é juntar as duas coisas: te colocar na frente das pacientes certas e te dar a estrutura para transformar atenção em faturamento.</T>
+            <p className="font-sans text-[16px] text-ink-2 mb-[24px] leading-relaxed max-w-[54ch]">
+              <T>Desenvolvi o método de aceleração Monike Alves depois de perceber que o tráfego pago tradicional falha para médicos e dentistas porque ignora o funil de vendas. Anúncios só funcionam se houver conversão no comercial e clareza no posicionamento. É esse ecossistema completo que eu implemento na sua clínica.</T>
             </p>
           </div>
 
@@ -124,11 +109,27 @@ export const QuemSouEu: React.FC = () => {
         {/* Right: Picture/Portrait (Split editorial) */}
         <div className="reveal-item md:col-span-5 relative flex justify-center">
           <div className="relative w-full max-w-[340px] aspect-[4/5] bg-panel rounded-[20px] border border-cream overflow-hidden group transition-all duration-300 hover:border-olive/35">
-            <img 
-              src={SobreImg} 
-              alt="Monike Alves - Quem te atende" 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-            />
+            <picture className="absolute inset-0 w-full h-full">
+              <source 
+                type="image/avif" 
+                srcSet={`${Sobre360Avif} 360w, ${Sobre480Avif} 480w, ${Sobre768Avif} 768w, ${Sobre1100Avif} 1100w`}
+                sizes="(max-width: 768px) 100vw, 400px"
+              />
+              <source 
+                type="image/webp" 
+                srcSet={`${Sobre360Webp} 360w, ${Sobre480Webp} 480w, ${Sobre768Webp} 768w, ${Sobre1100Webp} 1100w`}
+                sizes="(max-width: 768px) 100vw, 400px"
+              />
+              <img 
+                src={SobreImgFallback} 
+                alt="Monike Alves - Quem te atende" 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                width="340"
+                height="425"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             
             {/* Instagram Glassmorphism Badge */}
             <a 
