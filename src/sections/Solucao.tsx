@@ -68,21 +68,21 @@ export const Solucao: React.FC = () => {
               <picture>
                 <source
                   type="image/avif"
-                  srcSet={`${trafegoAvif480} 480w, ${trafegoAvif768} 768w, ${trafegoAvif1100} 1100w`}
+                  srcSet={`${conteudoAvif480} 480w, ${conteudoAvif768} 768w, ${conteudoAvif1100} 1100w`}
                   sizes="(max-width: 768px) 100vw, 420px"
                 />
                 <source
                   type="image/webp"
-                  srcSet={`${trafegoWebp480} 480w, ${trafegoWebp768} 768w, ${trafegoWebp1100} 1100w`}
+                  srcSet={`${conteudoWebp480} 480w, ${conteudoWebp768} 768w, ${conteudoWebp1100} 1100w`}
                   sizes="(max-width: 768px) 100vw, 420px"
                 />
                 <img
-                  src={trafegoWebp768}
+                  src={conteudoWebp768}
                   width="1100"
                   height="825"
                   loading="lazy"
                   decoding="async"
-                  alt="Mão segurando um celular que exibe um anúncio editorial de estética"
+                  alt="Moodboard de conteúdo com fotos, feed no celular e cartões de cor verde-oliva"
                   className="w-full h-full object-cover object-center block"
                 />
               </picture>
@@ -154,21 +154,21 @@ export const Solucao: React.FC = () => {
               <picture>
                 <source
                   type="image/avif"
-                  srcSet={`${conteudoAvif480} 480w, ${conteudoAvif768} 768w, ${conteudoAvif1100} 1100w`}
+                  srcSet={`${trafegoAvif480} 480w, ${trafegoAvif768} 768w, ${trafegoAvif1100} 1100w`}
                   sizes="(max-width: 768px) 100vw, 420px"
                 />
                 <source
                   type="image/webp"
-                  srcSet={`${conteudoWebp480} 480w, ${conteudoWebp768} 768w, ${conteudoWebp1100} 1100w`}
+                  srcSet={`${trafegoWebp480} 480w, ${trafegoWebp768} 768w, ${trafegoWebp1100} 1100w`}
                   sizes="(max-width: 768px) 100vw, 420px"
                 />
                 <img
-                  src={conteudoWebp768}
+                  src={trafegoWebp768}
                   width="1100"
                   height="825"
                   loading="lazy"
                   decoding="async"
-                  alt="Moodboard de conteúdo com fotos, feed no celular e cartões de cor verde-oliva"
+                  alt="Mão segurando um celular que exibe um anúncio editorial de estética"
                   className="w-full h-full object-cover object-center block"
                 />
               </picture>
