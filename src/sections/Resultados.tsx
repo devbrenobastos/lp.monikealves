@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { useReveal } from '../hooks/useReveal';
-import { Play } from 'lucide-react';
 import { Balance } from '../components/Balance';
 import { T } from '../components/T';
 import { Eyebrow } from '../components/Eyebrow';
@@ -89,44 +88,62 @@ export const Resultados: React.FC = () => {
           </p>
         </div>
 
-        {/* Highlight Grid (1 big layout + video case next to it) */}
+        {/* Highlight Grid (1 index layout + video case next to it) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
           {/* Cases Column */}
-          <div 
-            className="lg:col-span-7 flex flex-col gap-4"
-            role="tablist"
-            aria-label="Resultados por caso"
-            aria-orientation="vertical"
-          >
-            {cases.map((c, idx) => {
-              const isActive = activeTab === idx;
-              return (
-                <div 
-                  key={c.id} 
-                  ref={el => { tabsRef.current[idx] = el; }}
-                  role="tab"
-                  id={`tab-${c.id}`}
-                  aria-controls={`panel-${c.id}`}
-                  aria-selected={isActive}
-                  tabIndex={isActive ? 0 : -1}
-                  onClick={() => handleTabChange(idx)}
-                  onKeyDown={(e) => handleKeyDown(e, idx)}
-                  className={`reveal-item cursor-pointer text-left bg-panel border border-cream p-6 md:p-8 rounded-[16px] transition-all duration-300 flex-1 outline-none focus-visible:ring-2 focus-visible:ring-olive
-                    ${isActive ? 'border-l-[4px] border-l-olive bg-olive/[0.03] opacity-100' : 'opacity-70 hover:opacity-100'}
-                  `}
-                >
-                  <span className={`font-mono text-[28px] md:text-[36px] block mb-2 font-semibold tracking-tight transition-colors ${isActive ? 'text-amber' : 'text-ink'}`}>
-                    <span className="nowrap">{c.number}</span> {c.suffix && <span className="text-xs md:text-sm font-sans text-ink-3 font-normal">{c.suffix}</span>}
-                  </span>
-                  <h3 className="font-serif text-body text-ink font-normal mb-2 leading-tight">
-                    <Balance>{c.title}</Balance>
-                  </h3>
-                  <p className="font-sans text-body-s text-ink-2 leading-relaxed">
-                    <T>{c.desc}</T>
-                  </p>
-                </div>
-              );
-            })}
+          <div className="lg:col-span-7 flex flex-col justify-between">
+            <div 
+              className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible scrollbar-none gap-6 lg:gap-0 border-b lg:border-b-0 border-cream"
+              role="tablist"
+              aria-label="Resultados por caso"
+              aria-orientation="vertical"
+            >
+              {cases.map((c, idx) => {
+                const isActive = activeTab === idx;
+                return (
+                  <div 
+                    key={c.id} 
+                    ref={el => { tabsRef.current[idx] = el; }}
+                    role="tab"
+                    id={`tab-${c.id}`}
+                    aria-controls={`panel-${c.id}`}
+                    aria-selected={isActive}
+                    tabIndex={isActive ? 0 : -1}
+                    onClick={() => handleTabChange(idx)}
+                    onKeyDown={(e) => handleKeyDown(e, idx)}
+                    className={`cursor-pointer text-left pb-4 lg:py-6 border-b-2 lg:border-b border-transparent lg:border-cream transition-all duration-300 outline-none focus-visible:ring-1 focus-visible:ring-olive relative pl-0 lg:pl-6 flex-shrink-0 lg:flex-shrink
+                      ${isActive ? 'border-olive lg:border-cream opacity-100' : 'opacity-55 hover:opacity-80'}
+                    `}
+                  >
+                    {/* Active indicator: vertical left on desktop */}
+                    {isActive && (
+                      <div className="hidden lg:block absolute left-0 top-6 bottom-6 w-[2px] bg-olive rounded-full" />
+                    )}
+                    
+                    <span className={`font-mono text-[22px] lg:text-[32px] block mb-1 lg:mb-2 font-semibold tracking-tight transition-colors ${isActive ? 'text-amber' : 'text-ink-3'}`}>
+                      <span className="nowrap">{c.number}</span> {c.suffix && <span className="text-xs md:text-sm font-sans text-ink-3 font-normal">{c.suffix}</span>}
+                    </span>
+                    <h3 className="font-serif text-body-s lg:text-body text-ink font-normal leading-tight">
+                      <Balance>{c.title}</Balance>
+                    </h3>
+                    
+                    {/* Collapsible description with smooth transition */}
+                    <div className={`hidden lg:block overflow-hidden transition-all duration-300 ease-in-out ${isActive ? 'max-h-[100px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
+                      <p className="font-sans text-body-s text-ink-2 leading-relaxed">
+                        <T>{c.desc}</T>
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Mobile active description */}
+            <div className="lg:hidden mt-4 mb-6">
+              <p className="font-sans text-body-s text-ink-2 leading-relaxed">
+                <T>{cases[activeTab].desc}</T>
+              </p>
+            </div>
           </div>
 
           {/* Video Testimony / Case study player */}
@@ -137,13 +154,15 @@ export const Resultados: React.FC = () => {
             aria-labelledby={`tab-${cases[activeTab].id}`}
           >
             <div className={`absolute inset-0 flex flex-col justify-between w-full h-full p-8 text-center transition-opacity duration-200 ${fadeState}`}>
-              <div className="absolute inset-0 bg-ink-2/30 flex items-center justify-center z-10">
+              <div className="absolute inset-0 bg-ink-2/10 flex items-center justify-center z-10">
                 <button 
                   type="button" 
                   aria-label={`Tocar depoimento do ${cases[activeTab].title}`} 
-                  className="w-16 h-16 rounded-full bg-olive text-paper flex items-center justify-center transition-all duration-300 hover:scale-105 hover:bg-olive-h shadow-xl"
+                  className="w-16 h-16 rounded-full border border-olive/80 bg-paper/20 backdrop-blur-sm text-olive flex items-center justify-center transition-all duration-300 hover:scale-105 hover:bg-olive hover:text-paper shadow-lg"
                 >
-                  <Play className="w-6 h-6 fill-current translate-x-0.5" />
+                  <svg className="w-5 h-5 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
                 </button>
               </div>
               

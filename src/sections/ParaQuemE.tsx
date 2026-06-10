@@ -28,7 +28,7 @@ export const ParaQuemE: React.FC = () => {
         {/* Header Block */}
         <div className="reveal-item max-w-[62ch] mb-12">
           <Eyebrow className="mb-6">É PARA VOCÊ SE</Eyebrow>
-          <h2 className="font-sans text-display-l text-ink font-light leading-tight">
+          <h2 className="font-sans text-[32px] md:text-[40px] text-ink font-light leading-tight">
             <T>Esse trabalho é para um tipo de Dra.</T> <em className="font-serif text-olive not-italic italic font-normal"><T>específica</T></em>
           </h2>
         </div>
@@ -36,17 +36,16 @@ export const ParaQuemE: React.FC = () => {
         {/* 2 Stylized Panels */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Panel 1: É para você se */}
-          <div className="reveal-item bg-olive/[0.06] border border-cream rounded-[16px] p-8 hover:-translate-y-0.5 hover:border-olive/30 transition-all duration-300 flex flex-col justify-between">
+          <div className="reveal-item bg-olive/[0.07] border border-cream rounded-[16px] p-[36px] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(28,26,22,0.06)] transition-all duration-300 flex flex-col justify-between">
             <div>
-              <h3 className="font-mono text-mono-eyebrow text-olive-d uppercase tracking-wider mb-6 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-olive"></span>
-                <T>É para você se:</T>
-              </h3>
+              <div className="border-b border-cream pb-4 mb-6">
+                <Eyebrow className="mb-0 bg-transparent border-none p-0">É para você se</Eyebrow>
+              </div>
               <ul className="space-y-6">
                 {forYouList.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-4">
-                    <div className="w-5 h-5 rounded-full bg-olive text-paper flex items-center justify-center flex-shrink-0 mt-0.5" aria-hidden="true">
-                      <Check className="w-3 h-3 stroke-[3]" />
+                  <li key={idx} className={`flex items-start gap-4 pb-6 ${idx !== forYouList.length - 1 ? 'border-b border-cream/50' : ''}`}>
+                    <div className="w-[20px] h-[20px] rounded-full border border-olive flex items-center justify-center text-olive flex-shrink-0 mt-0.5" aria-hidden="true">
+                      <Check className="w-[12px] h-[12px] stroke-[2.5]" />
                     </div>
                     <p className="font-sans text-body text-ink-2 leading-relaxed">
                       <T>{item}</T>
@@ -58,17 +57,16 @@ export const ParaQuemE: React.FC = () => {
           </div>
 
           {/* Panel 2: Não é para você se */}
-          <div className="reveal-item bg-panel border border-cream rounded-[16px] p-8 hover:-translate-y-0.5 hover:border-terra/30 transition-all duration-300 flex flex-col justify-between">
+          <div className="reveal-item bg-panel border border-cream rounded-[16px] p-[36px] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(28,26,22,0.06)] transition-all duration-300 flex flex-col justify-between">
             <div>
-              <h3 className="font-mono text-mono-eyebrow text-terra uppercase tracking-wider mb-6 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-terra"></span>
-                <T>Não é para você se:</T>
-              </h3>
+              <div className="border-b border-cream pb-4 mb-6">
+                <Eyebrow className="mb-0 bg-transparent border-none p-0">Não é para você se</Eyebrow>
+              </div>
               <ul className="space-y-6">
                 {notForYouList.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-4">
-                    <div className="w-5 h-5 rounded-full bg-terra text-paper flex items-center justify-center flex-shrink-0 mt-0.5" aria-hidden="true">
-                      <X className="w-3 h-3 stroke-[3]" />
+                  <li key={idx} className={`flex items-start gap-4 pb-6 ${idx !== notForYouList.length - 1 ? 'border-b border-cream/50' : ''}`}>
+                    <div className="w-[20px] h-[20px] rounded-full border border-terra flex items-center justify-center text-terra flex-shrink-0 mt-0.5" aria-hidden="true">
+                      <X className="w-[12px] h-[12px] stroke-[2.5]" />
                     </div>
                     <p className="font-sans text-body text-ink-2 leading-relaxed">
                       <T>{item}</T>

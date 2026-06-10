@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useReveal } from '../hooks/useReveal';
 import { T } from '../components/T';
 import { Eyebrow } from '../components/Eyebrow';
 
 export const QuemSouEu: React.FC = () => {
   const revealRef = useReveal();
+  const containerRef = React.useRef<HTMLHeadingElement>(null);
+  const [index, setIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [prefersReduced, setPrefersReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReduced(mq.matches);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReduced || !containerRef.current) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [prefersReduced]);
+
+  useEffect(() => {
+    if (prefersReduced || !isVisible) return;
+    if (index < 26) {
+      const timer = setTimeout(() => {
+        setIndex((prev: number) => prev + 1);
+      }, 45);
+      return () => clearTimeout(timer);
+    }
+  }, [index, isVisible, prefersReduced]);
 
   const handleApplyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -12,6 +43,49 @@ export const QuemSouEu: React.FC = () => {
     if (ctaSection) {
       ctaSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const renderHeading = () => {
+    if (prefersReduced) {
+      return (
+        <h2 ref={containerRef} className="font-serif text-[32px] md:text-[44px] text-ink font-light leading-[1.15] tracking-[0.01em] mb-[20px]">
+          <T>Oi, eu sou a</T> <em className="text-olive not-italic italic font-normal"><T>Monike Alves.</T></em>
+        </h2>
+      );
+    }
+
+    const baseText = "Oi, eu sou a ";
+    const nameText = "Monike Alves.";
+
+    let visibleBase = "";
+    let invisibleBase = baseText;
+    let visibleName = "";
+    let invisibleName = nameText;
+
+    if (index <= baseText.length) {
+      visibleBase = baseText.slice(0, index);
+      invisibleBase = baseText.slice(index);
+    } else {
+      visibleBase = baseText;
+      invisibleBase = "";
+      const nameIndex = index - baseText.length;
+      visibleName = nameText.slice(0, nameIndex);
+      invisibleName = nameText.slice(nameIndex);
+    }
+
+    const showCursor = index < 26;
+
+    return (
+      <h2 ref={containerRef} className="font-serif text-[32px] md:text-[44px] text-ink font-light leading-[1.15] tracking-[0.01em] mb-[20px] select-none" aria-label="Oi, eu sou a Monike Alves.">
+        <span>{visibleBase}</span>
+        {visibleName && <em className="text-olive not-italic italic font-normal">{visibleName}</em>}
+        {showCursor && <span className="cursor-blink" aria-hidden="true">|</span>}
+        <span className="opacity-0 select-none pointer-events-none" aria-hidden="true">
+          {invisibleBase}
+          <em className="text-olive not-italic italic font-normal">{invisibleName}</em>
+        </span>
+      </h2>
+    );
   };
 
   return (
@@ -23,10 +97,7 @@ export const QuemSouEu: React.FC = () => {
         {/* Left: Text & Bio in First Person */}
         <div className="reveal-item md:col-span-7">
           <Eyebrow className="mb-[12px]">QUEM TE ATENDE</Eyebrow>
-          {/* A3: Moment full-serif in DM Serif Display italic leve, size contido ~32px (font-serif text-display-m) */}
-          <h2 className="font-serif text-display-m text-ink font-light italic leading-[1.25] tracking-[0.01em] mb-[20px]">
-            <T>Oi, eu sou a</T> <span className="text-olive not-italic italic font-light"><T>Monike.</T></span>
-          </h2>
+          {renderHeading()}
           
           <div className="font-sans text-body text-ink-2 space-y-4 max-w-[62ch] mb-[40px] leading-relaxed">
             <p>

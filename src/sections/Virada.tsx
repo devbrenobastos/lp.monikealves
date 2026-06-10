@@ -17,8 +17,8 @@ export const Virada: React.FC = () => {
         
         {/* A3: Virada pull-quote is full-serif italic DM Serif Display, size contido ~32px (font-serif text-display-m) */}
         <div className="reveal-item max-w-[62ch] mx-auto mb-8">
-          <h2 className="font-serif text-display-m text-ink font-light italic leading-[1.25] tracking-[0.01em]">
-            <T>Tráfego sem estratégia é só despesa.</T>
+          <h2 className="font-sans text-display-m text-ink font-light leading-[1.25] tracking-[0.01em]">
+            <T>Tráfego sem estratégia é só</T> <em className="font-serif text-olive not-italic italic font-normal"><T>despesa.</T></em>
           </h2>
         </div>
 
@@ -28,18 +28,14 @@ export const Virada: React.FC = () => {
           </p>
         </div>
 
-        <div className="reveal-item max-w-[28ch] mx-auto flex flex-col items-center">
-          <div className="w-12 h-[1px] bg-cream mb-8" />
+        <div className="reveal-item max-w-[30ch] mx-auto flex flex-col items-start text-left border-l-2 border-l-olive pl-6 relative">
+          <span className="absolute -top-8 -left-4 font-serif text-[80px] text-olive opacity-25 leading-none select-none">“</span>
           
-          <div className="relative pt-6">
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 font-serif text-[80px] text-olive opacity-25 leading-none select-none">“</span>
-            
-            <blockquote className="font-serif text-[26px] text-ink italic leading-[1.35] tracking-[0.01em] text-center max-w-[22ch] mx-auto">
-              <Typewriter text="O problema quase nunca é o quanto você investe. É o que está montado por trás do botão 'promover'." />
-            </blockquote>
-          </div>
+          <blockquote className="font-serif text-[28px] text-ink italic leading-[1.35] tracking-[0.01em]">
+            <Typewriter text="O problema quase nunca é o quanto você investe. É o que está montado por trás do botão 'promover'." />
+          </blockquote>
 
-          <cite className="not-italic font-mono text-[11px] tracking-[0.18em] text-ink-3 uppercase mt-6 block">
+          <cite className="not-italic font-mono text-[11px] tracking-[0.18em] text-ink-3 uppercase mt-4 block">
             <T>— A VERDADE QUE NINGUÉM TE CONTA</T>
           </cite>
         </div>

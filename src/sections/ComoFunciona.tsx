@@ -54,13 +54,13 @@ export const ComoFunciona: React.FC = () => {
         {/* Timeline representation connected by a custom hairline line */}
         <div className="relative">
           {/* Vertical connecting line (for desktop and mobile) */}
-          <div className="absolute left-4 md:left-[50%] top-2 bottom-2 w-[1px] bg-d-line pointer-events-none">
-            {/* Olive active indicator */}
-            <div className="absolute inset-y-0 left-0 w-full bg-olive-h/40 rounded"></div>
+          <div className="absolute left-4 md:left-[50%] top-0 bottom-0 w-[1px] bg-d-line pointer-events-none">
+            {/* Olive active indicator scroll-driven timeline fill */}
+            <div className="timeline-fill absolute top-0 left-0 w-full h-full rounded"></div>
           </div>
 
-          {/* 3: gap vertical clamp(40px, 5vw, 64px) between items */}
-          <div className="space-y-[clamp(40px,5vw,64px)] md:space-y-0 md:grid md:grid-cols-1 md:gap-y-[clamp(40px,5vw,64px)]">
+          {/* 3: gap vertical clamp(32px, 4vw, 56px) between items */}
+          <div className="space-y-[clamp(32px,4vw,56px)] md:space-y-0 md:grid md:grid-cols-1 md:gap-y-[clamp(32px,4vw,56px)] pt-6">
             {steps.map((step, idx) => {
               const isEven = idx % 2 === 0;
               return (
@@ -70,15 +70,15 @@ export const ComoFunciona: React.FC = () => {
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
                 >
-                  {/* Timeline indicator node */}
-                  <div className="absolute left-4 md:left-[50%] top-2 -translate-x-[50%] z-20 flex items-center justify-center">
+                  {/* Timeline indicator node - topo do card = centro do nó */}
+                  <div className="absolute left-4 md:left-[50%] top-0 -translate-x-[50%] -translate-y-[50%] z-20 flex items-center justify-center">
                     <div className="w-9 h-9 rounded-full bg-d-surface border border-olive-h/50 flex items-center justify-center font-mono text-[13px] text-amber font-semibold shadow-lg">
                       {step.num}
                     </div>
                   </div>
 
                   {/* Left Side Content (Desktop) / Main Content (Mobile) */}
-                  <div className={`pl-14 md:pl-0 md:w-[46%] ${isEven ? 'md:text-left' : 'md:text-right md:pr-10'}`}>
+                  <div className={`pl-14 md:pl-0 md:w-[44%] ${isEven ? 'md:text-left' : 'md:text-right md:pr-10'}`}>
                     {/* 3: padding interno dos cards 32px */}
                     <div className="bg-d-surface border border-d-line p-8 rounded-[16px] transition-all duration-300 hover:border-olive-h/30 group">
                       {/* 3: eyebrow -> titulo: 10px */}
@@ -94,8 +94,8 @@ export const ComoFunciona: React.FC = () => {
                   </div>
 
                   {/* Empty Spacer side for alternate grid alignment */}
-                  <div className="hidden md:block md:w-[8%]" />
-                  <div className="hidden md:block md:w-[46%]" />
+                  <div className="hidden md:block md:w-[12%]" />
+                  <div className="hidden md:block md:w-[44%]" />
                 </div>
               );
             })}

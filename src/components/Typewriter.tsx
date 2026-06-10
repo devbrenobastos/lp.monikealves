@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface TypewriterProps {
   text: string;
   speed?: number;
   holdMs?: number;
+  loop?: boolean;
+  hideCursorOnComplete?: boolean;
 }
 
-export const Typewriter: React.FC<TypewriterProps> = ({ text, speed = 45, holdMs = 5000 }) => {
+export const Typewriter: React.FC<TypewriterProps> = ({ 
+  text, 
+  speed = 45, 
+  holdMs = 5000, 
+  loop = true,
+  hideCursorOnComplete = false
+}) => {
   const [index, setIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -20,8 +30,22 @@ export const Typewriter: React.FC<TypewriterProps> = ({ text, speed = 45, holdMs
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      setIndex(text.length);
+    if (prefersReducedMotion || !containerRef.current) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (prefersReducedMotion || !isVisible) {
+      if (prefersReducedMotion) setIndex(text.length);
       return;
     }
 
@@ -32,9 +56,11 @@ export const Typewriter: React.FC<TypewriterProps> = ({ text, speed = 45, holdMs
           setIndex((prev) => prev + 1);
         }, speed);
       } else {
-        timer = window.setTimeout(() => {
-          setIsDeleting(true);
-        }, holdMs);
+        if (loop) {
+          timer = window.setTimeout(() => {
+            setIsDeleting(true);
+          }, holdMs);
+        }
       }
     } else {
       if (index > 0) {
@@ -47,7 +73,7 @@ export const Typewriter: React.FC<TypewriterProps> = ({ text, speed = 45, holdMs
     }
 
     return () => clearTimeout(timer);
-  }, [index, isDeleting, text, speed, holdMs, prefersReducedMotion]);
+  }, [index, isDeleting, text, speed, holdMs, prefersReducedMotion, isVisible, loop]);
 
   if (prefersReducedMotion) {
     return <span>{text}</span>;
@@ -55,11 +81,13 @@ export const Typewriter: React.FC<TypewriterProps> = ({ text, speed = 45, holdMs
 
   const visibleText = text.slice(0, index);
   const invisibleText = text.slice(index);
+  const isComplete = index === text.length;
+  const showCursor = !isDeleting && (!isComplete || !hideCursorOnComplete);
 
   return (
-    <span className="relative inline-block" aria-label={text}>
+    <span ref={containerRef} className="relative inline-block" aria-label={text}>
       <span>{visibleText}</span>
-      <span className="cursor-blink" aria-hidden="true">|</span>
+      {showCursor && <span className="cursor-blink" aria-hidden="true">|</span>}
       <span className="opacity-0 select-none pointer-events-none" aria-hidden="true">
         {invisibleText}
       </span>
