@@ -112,7 +112,7 @@ export const ComoFunciona: React.FC = () => {
                 >
                   {/* Timeline indicator node - topo do card = centro do nó */}
                   <div className="absolute left-4 md:left-[50%] top-0 -translate-x-[50%] -translate-y-[50%] z-20 flex items-center justify-center">
-                    <div className="w-9 h-9 rounded-full bg-d-surface border border-olive-h/50 flex items-center justify-center font-mono text-[13px] text-amber font-semibold shadow-lg">
+                    <div className="w-9 h-9 rounded-full bg-d-surface border border-olive-h/50 flex items-center justify-center font-mono text-[13px] text-amber-light font-semibold shadow-lg">
                       {step.num}
                     </div>
                   </div>

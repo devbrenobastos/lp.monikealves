@@ -27,7 +27,10 @@ export default {
           elevated: "var(--d-elevated)",
           line: "var(--d-line)",
         },
-        amber: "var(--amber)",
+        amber: {
+          DEFAULT: "var(--amber)",
+          light: "var(--amber-light)",
+        },
         amethyst: "var(--amethyst)",
         terra: "var(--terra)",
       },

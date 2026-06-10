@@ -21,7 +21,8 @@
   --d-line:     rgba(199, 190, 185, 0.16);
 
   /* Detalhes — uso cirúrgico, nunca dominante */
-  --amber:      #C4953A;  /* números de dinheiro */
+  --amber:      #8C6A1E;  /* números de dinheiro — contraste 4.5:1 sobre --paper */
+  --amber-light: #C4953A; /* versão clara para fundos escuros */
   --amethyst:   #8E5E9E;  /* conversão */
   --terra:      #B04A3F;  /* dor / lado "tradicional" */
 

@@ -182,7 +182,6 @@ export const Navigation: React.FC = () => {
           isScrolled ? 'scrolled' : 'bg-transparent border-b border-transparent'
         }`}
         aria-label="principal"
-        aria-hidden={mobileMenuOpen ? "true" : undefined}
       >
         <div className="w-full max-w-content mx-auto px-6 md:px-10 flex items-center justify-between">
           <a 
@@ -228,7 +227,8 @@ export const Navigation: React.FC = () => {
             onClick={() => setMobileMenuOpen(true)}
             className="md:hidden p-2 text-ink hover:text-olive focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="Abrir menu"
-            aria-expanded="false"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -238,6 +238,7 @@ export const Navigation: React.FC = () => {
       {/* Mobile Menu Overlay Redesigned from Scratch */}
       <div 
         ref={menuRef}
+        id="mobile-menu"
         className={`fixed inset-0 z-[100] bg-paper flex flex-col md:hidden transition-all duration-300 ease-out origin-top-right ${
           mobileMenuOpen 
             ? 'opacity-100 translate-x-0 pointer-events-auto' 
@@ -246,6 +247,7 @@ export const Navigation: React.FC = () => {
         role="dialog"
         aria-modal="true"
         aria-label="Menu de navegação"
+        aria-hidden={!mobileMenuOpen}
       >
         {/* Header inside the panel overlay to match the nav height & keep layout consistent */}
         <div className="h-[72px] flex items-center justify-between px-6 border-b border-cream">
