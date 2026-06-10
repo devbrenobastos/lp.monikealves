@@ -26,7 +26,7 @@ export const ParaQuemE: React.FC = () => {
         className="max-w-content mx-auto px-5 md:px-10"
       >
         {/* Header Block */}
-        <div className="reveal-item max-w-[620px] mb-12 text-center flex flex-col items-center mx-auto">
+        <div className="reveal-item max-w-[620px] mb-32 md:mb-64 text-center flex flex-col items-center mx-auto">
           <Eyebrow className="mb-[12px]">É PARA VOCÊ SE</Eyebrow>
           <h2 className="font-sans text-[clamp(22px,5.5vw,36px)] md:text-[40px] text-ink font-light leading-tight text-center">
             <T>Esse trabalho é para</T><br className="block sm:hidden" /> <T>um tipo de Dra.</T> <span className="inline-block"><em className="font-serif text-olive not-italic italic font-normal ml-1.5"><T>específica.</T></em></span>
@@ -34,11 +34,11 @@ export const ParaQuemE: React.FC = () => {
         </div>
 
         {/* 2 Stylized Panels: stack on mobile with 20px gap, 2 columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-48">
           {/* Panel 1: É para você se */}
           <div className="reveal-item bg-olive/[0.07] border border-cream rounded-[16px] p-6 md:p-[36px] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(28,26,22,0.06)] transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div className="border-b border-cream pb-4 mb-6 flex justify-center">
+              <div className="border-b border-cream pb-4 mb-6 flex justify-center md:justify-start">
                 <Eyebrow className="mb-0 bg-transparent border-none p-0">É para você se</Eyebrow>
               </div>
               <ul className="space-y-6">
@@ -59,7 +59,7 @@ export const ParaQuemE: React.FC = () => {
           {/* Panel 2: Não é para você se */}
           <div className="reveal-item bg-panel border border-cream rounded-[16px] p-6 md:p-[36px] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(28,26,22,0.06)] transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div className="border-b border-cream pb-4 mb-6 flex justify-center">
+              <div className="border-b border-cream pb-4 mb-6 flex justify-center md:justify-start">
                 <Eyebrow className="mb-0 bg-transparent border-none p-0">Não é para você se</Eyebrow>
               </div>
               <ul className="space-y-6">
