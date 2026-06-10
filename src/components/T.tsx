@@ -2,7 +2,7 @@ import React from 'react';
 
 const SHORT = new Set([
   'a', 'o', 'e', 'é', 'de', 'da', 'do', 'das', 'dos', 'em', 'no', 'na', 'nos', 'nas',
-  'um', 'uma', 'que', 'ou', 'se', 'ao', 'à', 'às', 'aos', 'por', 'com', 'sem', 'pra', 'para', 'os', 'as'
+  'um', 'uma', 'que', 'ou', 'se', 'te', 'me', 'só', 'ao', 'à', 'às', 'aos', 'por', 'com', 'sem', 'pra', 'para', 'os', 'as'
 ]);
 
 export function typeset(input: string): string {

@@ -40,10 +40,10 @@ export const PorQueMonike: React.FC = () => {
         {/* Intro block in 2 columns (stacks naturally on mobile, title then description) */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-[clamp(40px,5vw,80px)] mb-12">
           <div className="reveal-item w-full md:w-[48%]">
-            <Eyebrow className="mb-6">POR QUE A MONIKE</Eyebrow>
-            <h2 className="font-sans text-[32px] md:text-[40px] text-ink font-light leading-tight">
-              <T>Genérico não funciona para harmonização.</T><br />
-              <em className="font-serif text-olive not-italic italic font-normal"><T>Eu só trabalho com isso.</T></em>
+            <Eyebrow className="mb-[12px]">POR QUE A MONIKE</Eyebrow>
+            <h2 className="font-sans text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight">
+              <span className="block mb-2"><T>Genérico não funciona para harmonização.</T></span>
+              <em className="font-serif text-olive not-italic italic font-normal block"><T>Eu só trabalho com isso.</T></em>
             </h2>
           </div>
           <div className="reveal-item w-full md:w-[44%] md:pt-8">

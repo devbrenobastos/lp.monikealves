@@ -76,7 +76,7 @@ export const ComoFunciona: React.FC = () => {
         {/* Header Block */}
         <div className="reveal-item max-w-[62ch] mb-[48px] md:mb-[64px]">
           <Eyebrow dark className="mb-[12px]">O CAMINHO</Eyebrow>
-          <h2 className="font-sans text-display-l text-paper font-light leading-tight mb-[20px]">
+          <h2 className="font-sans text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-paper font-light leading-tight mb-[20px]">
             <T>Como a gente</T> <em className="font-serif text-olive-h not-italic italic font-normal"><T>transforma</T></em> <T>sua clínica em referência</T>
           </h2>
           <p className="font-sans text-[16px] md:text-body-l text-cream/80 leading-relaxed">

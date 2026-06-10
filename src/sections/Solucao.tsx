@@ -34,10 +34,10 @@ export const Solucao: React.FC = () => {
         ref={revealRef}
         className="max-w-content mx-auto px-5 md:px-10"
       >
-        {/* Header Block (Centered on mobile) */}
-        <div className="reveal-item max-w-[62ch] mb-[40px] text-center md:text-left mx-auto md:mx-0 flex flex-col items-center md:items-start">
+        {/* Header Block (Left-aligned) */}
+        <div className="reveal-item max-w-[62ch] mb-[40px] text-left flex flex-col items-start">
           <Eyebrow className="mb-[12px]">O QUE EU FAÇO</Eyebrow>
-          <h2 className="font-sans text-display-l text-ink font-light leading-tight mb-[20px] text-wrap-balance">
+          <h2 className="font-sans text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight mb-[20px] text-wrap-balance">
             <T>Eu cuido do funil inteiro — do anúncio à</T> <em className="font-serif text-olive not-italic italic font-normal"><T>cadeira.</T></em>
           </h2>
           <p className="font-sans text-[16px] md:text-body-l text-ink-2 leading-relaxed">
@@ -48,11 +48,11 @@ export const Solucao: React.FC = () => {
         {/* Blocks Layout */}
         <div className="space-y-16 md:space-y-24">
           {/* Block 01 */}
-          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 text-center md:text-left">
-            <div className="md:col-span-1 align-self-start flex justify-center md:justify-start">
+          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 text-left">
+            <div className="md:col-span-1 align-self-start flex justify-start">
               <span className="font-mono text-[36px] md:text-[48px] text-mist font-medium leading-[1.1] pt-0">01</span>
             </div>
-            <div className="md:col-span-6 flex flex-col items-center md:items-start">
+            <div className="md:col-span-6 flex flex-col items-start">
               <h3 className="font-serif text-[24px] text-ink font-normal mb-3 leading-[1.1] text-wrap-balance">
                 <Balance>Tráfego pago que atrai a paciente certa</Balance>
               </h3>
@@ -86,15 +86,15 @@ export const Solucao: React.FC = () => {
           </div>
 
           {/* Block 02 - Reordered source code so text renders before image on mobile, with custom md:order tags for desktop alternate look */}
-          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 text-center md:text-left">
+          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 text-left">
             {/* Number: first in source, order-1 on desktop */}
-            <div className="md:col-span-1 md:order-1 align-self-start flex justify-center md:justify-start">
+            <div className="md:col-span-1 md:order-1 align-self-start flex justify-start">
               <span className="font-mono text-[36px] md:text-[48px] text-mist font-medium leading-[1.1] pt-0">02</span>
             </div>
             
             {/* Text & Content: second in source (renders 2nd on mobile), md:order-3 on desktop (renders 3rd/right on desktop) */}
-            <div className="md:col-span-6 md:order-3 md:pl-8 flex flex-col items-center md:items-start">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-olive/10 rounded-full mb-3 mx-auto md:mx-0">
+            <div className="md:col-span-6 md:order-3 md:pl-8 flex flex-col items-start">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-olive/10 rounded-full mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-olive"></span>
                 <span className="font-mono text-[10px] text-olive-d uppercase tracking-wider font-semibold"><T>o que ninguém faz</T></span>
               </div>
@@ -133,11 +133,11 @@ export const Solucao: React.FC = () => {
           </div>
 
           {/* Block 03 */}
-          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 text-center md:text-left">
-            <div className="md:col-span-1 align-self-start flex justify-center md:justify-start">
+          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 text-left">
+            <div className="md:col-span-1 align-self-start flex justify-start">
               <span className="font-mono text-[36px] md:text-[48px] text-mist font-medium leading-[1.1] pt-0">03</span>
             </div>
-            <div className="md:col-span-6 flex flex-col items-center md:items-start">
+            <div className="md:col-span-6 flex flex-col items-start">
               <h3 className="font-serif text-[24px] text-ink font-normal mb-3 leading-[1.1] text-wrap-balance">
                 <Balance>Conteúdo e criativos que posicionam</Balance>
               </h3>
@@ -172,8 +172,8 @@ export const Solucao: React.FC = () => {
         </div>
 
         {/* Section conclusion text */}
-        <div className="reveal-item mt-16 md:mt-24 border-t border-cream pt-8 text-center">
-          <p className="font-sans text-[16px] md:text-body-l text-ink-3 mx-auto text-wrap-balance">
+        <div className="reveal-item mt-16 md:mt-24 border-t border-cream pt-8 text-left">
+          <p className="font-sans text-[16px] md:text-body-l text-ink-3 text-wrap-balance">
             <T>Atrair, converter e aparecer — as três peças trabalhando juntas, não cada uma por conta.</T>
           </p>
         </div>

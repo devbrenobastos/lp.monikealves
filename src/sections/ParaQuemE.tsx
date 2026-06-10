@@ -26,10 +26,10 @@ export const ParaQuemE: React.FC = () => {
         className="max-w-content mx-auto px-5 md:px-10"
       >
         {/* Header Block */}
-        <div className="reveal-item max-w-[62ch] mb-12">
-          <Eyebrow className="mb-6">É PARA VOCÊ SE</Eyebrow>
-          <h2 className="font-sans text-[clamp(28px,6vw,40px)] text-ink font-light leading-tight">
-            <T>Esse trabalho é para um tipo de Dra.</T> <em className="font-serif text-olive not-italic italic font-normal"><T>específica</T></em>
+        <div className="reveal-item max-w-[62ch] mb-12 text-left flex flex-col items-start">
+          <Eyebrow className="mb-[12px]">É PARA VOCÊ SE</Eyebrow>
+          <h2 className="font-sans text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight">
+            <T>Esse trabalho é para um tipo de Dra.</T> <span className="inline-block"><em className="font-serif text-olive not-italic italic font-normal ml-1.5"><T>específica.</T></em></span>
           </h2>
         </div>
 

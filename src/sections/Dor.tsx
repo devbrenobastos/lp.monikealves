@@ -35,10 +35,10 @@ export const Dor: React.FC = () => {
         {/* Header content - matches PorQueMonike.tsx two-column layout */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-[clamp(40px,5vw,80px)] mb-12">
           <div className="reveal-item w-full md:w-[48%]">
-            <Eyebrow className="mb-6">ONDE TRAVA</Eyebrow>
-            <h2 className="font-sans text-[clamp(28px,6vw,40px)] text-ink font-light leading-tight text-wrap-balance">
-              <T>Você domina o procedimento.</T><br />
-              <span className="block mt-2">
+            <Eyebrow className="mb-[12px]">ONDE TRAVA</Eyebrow>
+            <h2 className="font-sans text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight">
+              <span className="block mb-2"><T>Você domina o procedimento.</T></span>
+              <span className="block">
                 <T>O que ninguém te ensinou foi a</T> <em className="font-serif text-olive not-italic italic font-normal"><T>vender</T></em> <T>ele.</T>
               </span>
             </h2>

@@ -15,9 +15,9 @@ export const Virada: React.FC = () => {
       >
         <Eyebrow className="reveal-item mb-[32px]">A REAL</Eyebrow>
         
-        <div className="reveal-item max-w-[62ch] mx-auto mb-8">
-          <h2 className="font-sans text-[clamp(24px,5vw,32px)] text-ink font-light leading-[1.25] tracking-[0.01em]">
-            <T>Tráfego sem estratégia é só</T> <em className="font-serif text-olive not-italic italic font-normal"><T>despesa.</T></em>
+        <div className="reveal-item max-w-[62ch] mx-auto mb-8 text-wrap-balance">
+          <h2 className="font-sans text-[clamp(22px,5vw,32px)] text-ink font-light leading-[1.25] tracking-[0.01em]">
+            <T>Tráfego sem estratégia é</T> <span className="inline-block"><T>só</T> <em className="font-serif text-olive not-italic italic font-normal ml-1.5"><T>despesa.</T></em></span>
           </h2>
         </div>
 
@@ -30,7 +30,7 @@ export const Virada: React.FC = () => {
         <div className="reveal-item max-w-[760px] mx-auto flex flex-col items-center text-center relative mt-8">
           <span className="absolute -top-10 left-1/2 -translate-x-1/2 font-serif text-[60px] md:text-[80px] text-olive opacity-25 leading-none select-none">“</span>
           
-          <blockquote className="font-serif text-[20px] md:text-[28px] text-ink italic leading-[1.35] tracking-[0.01em] whitespace-pre-line text-center">
+          <blockquote className="font-serif text-[20px] md:text-[28px] text-ink italic leading-[1.35] tracking-[0.01em] whitespace-pre-line text-center min-h-[72px] md:min-h-[96px] flex items-center justify-center">
             <Typewriter text={"O problema quase nunca é o quanto você investe.\nÉ o que está montado por trás do botão 'promover'."} />
           </blockquote>
 

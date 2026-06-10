@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useReveal } from '../hooks/useReveal';
 import { T } from '../components/T';
 import { Eyebrow } from '../components/Eyebrow';
+import SobreImg from '../assets/Sobre Monike.jpg';
 
 export const QuemSouEu: React.FC = () => {
   const revealRef = useReveal();
@@ -49,7 +50,7 @@ export const QuemSouEu: React.FC = () => {
   const renderHeading = () => {
     if (prefersReduced) {
       return (
-        <h2 ref={containerRef} className="font-serif text-[32px] md:text-[44px] text-ink font-light leading-[1.15] tracking-[0.01em] mb-[20px]">
+        <h2 ref={containerRef} className="font-serif text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight mb-[20px]">
           <T>Oi, eu sou a</T> <em className="text-olive not-italic italic font-normal"><T>Monike Alves.</T></em>
         </h2>
       );
@@ -77,7 +78,7 @@ export const QuemSouEu: React.FC = () => {
     const showCursor = index < 26;
 
     return (
-      <h2 ref={containerRef} className="font-serif text-[32px] md:text-[44px] text-ink font-light leading-[1.15] tracking-[0.01em] mb-[20px] select-none" aria-label="Oi, eu sou a Monike Alves.">
+      <h2 ref={containerRef} className="font-serif text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight mb-[20px] select-none" aria-label="Oi, eu sou a Monike Alves.">
         <span>{visibleBase}</span>
         {visibleName && <em className="text-olive not-italic italic font-normal">{visibleName}</em>}
         {showCursor && <span className="cursor-blink" aria-hidden="true">|</span>}
@@ -113,7 +114,7 @@ export const QuemSouEu: React.FC = () => {
             <a 
               href="#aplicar" 
               onClick={handleApplyClick}
-              className="inline-flex items-center justify-center border border-olive text-olive hover:bg-olive hover:text-paper px-6 py-3 rounded-full font-sans font-semibold text-body-s transition-all duration-300 transform hover:-translate-y-[1px] active:translate-y-0 min-h-[44px]"
+              className="inline-flex items-center justify-center border border-olive text-olive hover:bg-olive hover:text-paper px-6 py-3 rounded-full font-sans font-semibold text-body-s transition-all duration-300 transform hover:-translate-y-[1px] active:translate-y-0 min-h-[44px] w-full md:w-auto text-center"
             >
               <T>Aplique-se</T>
             </a>
@@ -122,10 +123,36 @@ export const QuemSouEu: React.FC = () => {
 
         {/* Right: Picture/Portrait (Split editorial) */}
         <div className="reveal-item md:col-span-5 relative flex justify-center">
-          <div className="w-full max-w-[340px] aspect-[4/5] bg-panel rounded-[20px] border border-cream overflow-hidden flex flex-col items-center justify-center p-8 text-center group transition-all duration-300 hover:border-olive/35">
-            <span className="font-mono text-mono-eyebrow text-ink-3 mb-2 uppercase"><T>FOTO DE PERFIL</T></span>
-            <span className="font-serif text-body italic text-ink-2">Foto da <span className="nowrap">Monike</span> Alves</span>
-            <span className="text-[10px] font-mono text-ink-3 mt-4 opacity-65"><T>Recomendado: AVIF/WebP, Foco médio, Luz suave</T></span>
+          <div className="relative w-full max-w-[340px] aspect-[4/5] bg-panel rounded-[20px] border border-cream overflow-hidden group transition-all duration-300 hover:border-olive/35">
+            <img 
+              src={SobreImg} 
+              alt="Monike Alves - Quem te atende" 
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+            
+            {/* Instagram Glassmorphism Badge */}
+            <a 
+              href="https://www.instagram.com/monikeaalvestrafego/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 px-5 py-2.5 rounded-full border shadow-sm flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] select-none whitespace-nowrap hover:shadow-md hover:bg-paper/80"
+              style={{ 
+                background: 'rgba(244, 241, 238, 0.65)', 
+                backdropFilter: 'blur(12px)', 
+                WebkitBackdropFilter: 'blur(12px)', 
+                borderColor: 'rgba(221, 216, 212, 0.6)' 
+              }}
+            >
+              {/* Instagram icon */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[15px] h-[15px] text-olive">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              <span className="font-sans text-[12px] md:text-[13px] text-ink-2 font-medium tracking-wide">
+                @monikeaalvestrafego
+              </span>
+            </a>
           </div>
         </div>
       </div>

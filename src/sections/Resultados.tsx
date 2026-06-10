@@ -134,7 +134,7 @@ export const Resultados: React.FC = () => {
         {/* Header Block (Left-aligned on mobile) */}
         <div className="reveal-item max-w-[60ch] mb-[40px] text-left flex flex-col items-start">
           <Eyebrow className="mb-[12px]">RESULTADOS REAIS</Eyebrow>
-          <h2 className="font-sans text-[clamp(26px,5vw,44px)] text-ink font-light leading-tight mb-[20px] text-wrap-balance">
+          <h2 className="font-sans text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight mb-[20px] text-wrap-balance">
             <T>O que muda quando a estratégia</T> <em className="font-serif text-olive not-italic italic font-normal"><T>entra</T></em>
           </h2>
           <p className="font-sans text-[16px] md:text-body-l text-ink-2 leading-relaxed text-wrap-balance">
@@ -195,49 +195,51 @@ export const Resultados: React.FC = () => {
           </div>
 
           {/* Video Testimony / Case study player - Appears below on mobile, full width */}
-          <div 
-            className="reveal-item lg:col-span-5 bg-panel border border-cream rounded-[20px] overflow-hidden flex flex-col justify-between min-h-[320px] relative group"
-            role="tabpanel"
-            id={`panel-${cases[activeTab].id}`}
-            aria-labelledby={`tab-${cases[activeTab].id}`}
-          >
-            <div className={`absolute inset-0 flex flex-col justify-between w-full h-full p-8 text-left transition-opacity duration-200 ${fadeState}`}>
-              <div className="absolute inset-0 bg-ink-2/10 flex items-center justify-center z-10">
-                <button 
-                  type="button" 
-                  aria-label={`Tocar depoimento do ${cases[activeTab].title}`} 
-                  className="w-16 h-16 rounded-full border border-olive/80 bg-paper/20 backdrop-blur-sm text-olive flex items-center justify-center transition-all duration-300 hover:scale-105 hover:bg-olive hover:text-paper shadow-lg"
-                >
-                  <svg className="w-5 h-5 fill-current translate-x-0.5" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </button>
-              </div>
-              
-              <div className="w-full h-full bg-panel flex flex-col items-start justify-center p-8 text-left mt-auto">
-                <span className="font-mono text-mono-eyebrow text-ink-3 mb-2 uppercase"><T>Depoimento em Vídeo (9:16)</T></span>
-                <span className="font-serif text-[16px] md:text-body text-ink italic mb-2 text-wrap-balance"><T>{cases[activeTab].quote}</T></span>
-                <span className="text-[10px] font-mono text-ink-3"><T>{`Thumbnail otimizada • ${cases[activeTab].videoSrc}`}</T></span>
+          <div className="reveal-item lg:col-span-5">
+            <div 
+              className="bg-panel border border-cream rounded-[20px] overflow-hidden flex flex-col justify-between min-h-[320px] relative group w-full h-full"
+              role="tabpanel"
+              id={`panel-${cases[activeTab].id}`}
+              aria-labelledby={`tab-${cases[activeTab].id}`}
+            >
+              <div className={`absolute inset-0 flex flex-col justify-between w-full h-full p-8 text-left transition-opacity duration-200 ${fadeState}`}>
+                <div className="absolute inset-0 bg-ink-2/10 flex items-center justify-center z-10">
+                  <button 
+                    type="button" 
+                    aria-label={`Tocar depoimento do ${cases[activeTab].title}`} 
+                    className="w-16 h-16 rounded-full border border-olive/80 bg-paper/20 backdrop-blur-sm text-olive flex items-center justify-center transition-all duration-300 hover:scale-105 hover:bg-olive hover:text-paper shadow-lg"
+                  >
+                    <svg className="w-5 h-5 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </button>
+                </div>
+                
+                <div className="w-full h-full bg-panel flex flex-col items-start justify-center p-8 text-left mt-auto">
+                  <span className="font-mono text-mono-eyebrow text-ink-3 mb-2 uppercase"><T>Depoimento em Vídeo (9:16)</T></span>
+                  <span className="font-serif text-[16px] md:text-body text-ink italic mb-2 text-wrap-balance"><T>{cases[activeTab].quote}</T></span>
+                  <span className="text-[10px] font-mono text-ink-3"><T>{`Thumbnail otimizada • ${cases[activeTab].videoSrc}`}</T></span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Stats Summary strip - Left-aligned on mobile, 3 columns on desktop */}
-        <div className="reveal-item border-t border-cream pt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
-          <div className="py-4 sm:py-0 flex flex-col items-start">
+        {/* Stats Summary strip - Centered on mobile with subtle dividers, 3 columns on desktop */}
+        <div className="reveal-item border-t border-cream pt-8 grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-6 text-center sm:text-left divide-y divide-cream/45 sm:divide-y-0">
+          <div className="py-4 sm:py-0 flex flex-col items-center sm:items-start">
             <span className="font-mono text-mono-data text-amber font-semibold block mb-1">
               <CountUp end={5} prefix="+" suffix="MM" />
             </span>
             <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>em vendas geradas</T></span>
           </div>
-          <div className="py-4 sm:py-0 border-y sm:border-y-0 sm:border-x border-cream flex flex-col items-start sm:px-6">
+          <div className="py-4 sm:py-0 flex flex-col items-center sm:items-start sm:border-x border-cream sm:px-6">
             <span className="font-mono text-mono-data text-ink font-semibold block mb-1">
               <CountUp end={10.4} decimals={1} suffix="k" />
             </span>
             <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>acompanham no Instagram</T></span>
           </div>
-          <div className="py-4 sm:py-0 flex flex-col items-start sm:px-6">
+          <div className="py-4 sm:py-0 flex flex-col items-center sm:items-start sm:px-6">
             <span className="font-mono text-mono-data text-ink font-semibold block mb-1">
               <CountUp end={200} prefix="+" />
             </span>

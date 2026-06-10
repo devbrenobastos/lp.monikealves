@@ -52,9 +52,9 @@ export const FAQ: React.FC = () => {
         className="max-w-content mx-auto px-5 md:px-10 flex flex-col md:flex-row gap-[clamp(40px,5vw,80px)]"
       >
         {/* Left column (sticky header only on desktop) */}
-        <div className="reveal-item w-full md:w-[38%] md:sticky md:top-[104px] self-start">
-          <Eyebrow className="mb-[16px]">PERGUNTAS FREQUENTES</Eyebrow>
-          <h2 className="font-sans text-[clamp(28px,6vw,40px)] text-ink font-light leading-tight">
+        <div className="reveal-item w-full md:w-[38%] md:sticky md:top-[104px] self-start text-left flex flex-col items-start">
+          <Eyebrow className="mb-[12px]">PERGUNTAS FREQUENTES</Eyebrow>
+          <h2 className="font-sans text-[clamp(24px,5.8vw,36px)] md:text-[40px] text-ink font-light leading-tight">
             FAQ
           </h2>
         </div>
