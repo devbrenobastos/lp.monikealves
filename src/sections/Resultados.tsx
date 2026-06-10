@@ -131,13 +131,13 @@ export const Resultados: React.FC = () => {
         ref={revealRef}
         className="max-w-content mx-auto px-5 md:px-10"
       >
-        {/* Header Block */}
-        <div className="reveal-item max-w-[60ch] mx-auto text-center mb-[40px]">
+        {/* Header Block (Centered on mobile) */}
+        <div className="reveal-item max-w-[60ch] mx-auto text-center mb-[40px] flex flex-col items-center">
           <Eyebrow className="mb-[12px]">RESULTADOS REAIS</Eyebrow>
-          <h2 className="font-sans text-display-l text-ink font-light leading-tight mb-[20px]">
+          <h2 className="font-sans text-display-l text-ink font-light leading-tight mb-[20px] text-wrap-balance">
             <T>O que muda quando a estratégia</T> <em className="font-serif text-olive not-italic italic font-normal"><T>entra</T></em>
           </h2>
-          <p className="font-sans text-[16px] md:text-body-l text-ink-2 leading-relaxed">
+          <p className="font-sans text-[16px] md:text-body-l text-ink-2 leading-relaxed text-wrap-balance">
             <T>Resultados de Dras. que pararam de impulsionar no escuro.</T>
           </p>
         </div>
@@ -146,9 +146,9 @@ export const Resultados: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
           {/* Cases Column */}
           <div className="lg:col-span-7 flex flex-col justify-between">
-            {/* Scrollable horizontal tabs on mobile, vertical stacked lines on desktop */}
+            {/* Stacked vertically one below the other on mobile, no horizontal scroll */}
             <div 
-              className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible scrollbar-none gap-6 lg:gap-0 border-b lg:border-b-0 border-cream pb-4 lg:pb-0"
+              className="flex flex-col lg:flex-col gap-6 lg:gap-0 border-b-0 lg:border-b-0 border-cream pb-0 lg:pb-0"
               role="tablist"
               aria-label="Resultados por caso"
               aria-orientation="vertical"
@@ -166,8 +166,8 @@ export const Resultados: React.FC = () => {
                     tabIndex={isActive ? 0 : -1}
                     onClick={() => handleTabChange(idx)}
                     onKeyDown={(e) => handleKeyDown(e, idx)}
-                    className={`cursor-pointer text-left pb-2 lg:py-6 border-b-2 lg:border-b border-transparent lg:border-cream transition-all duration-300 outline-none focus-visible:ring-1 focus-visible:ring-olive relative pl-0 lg:pl-6 flex-shrink-0 lg:flex-shrink
-                      ${isActive ? 'border-olive lg:border-cream opacity-100' : 'opacity-55 hover:opacity-80'}
+                    className={`cursor-pointer text-center lg:text-left pb-4 lg:py-6 border-b lg:border-b border-cream lg:border-cream transition-all duration-300 outline-none focus-visible:ring-1 focus-visible:ring-olive relative pl-0 lg:pl-6 flex-shrink-0 lg:flex-shrink
+                      ${isActive ? 'opacity-100 border-olive' : 'opacity-55 hover:opacity-80'}
                     `}
                   >
                     {/* Active vertical marker on desktop */}
@@ -178,26 +178,19 @@ export const Resultados: React.FC = () => {
                     <span className={`font-mono text-[20px] lg:text-[32px] block mb-1 lg:mb-2 font-semibold tracking-tight transition-colors ${isActive ? 'text-amber' : 'text-ink-3'}`}>
                       <span className="nowrap">{c.number}</span> {c.suffix && <span className="text-xs md:text-sm font-sans text-ink-3 font-normal">{c.suffix}</span>}
                     </span>
-                    <h3 className="font-serif text-[16px] lg:text-body text-ink font-normal leading-tight">
+                    <h3 className="font-serif text-[16px] lg:text-body text-ink font-normal leading-tight text-wrap-balance">
                       <Balance>{c.title}</Balance>
                     </h3>
                     
-                    {/* Desktop collapsible details */}
-                    <div className={`hidden lg:block overflow-hidden transition-all duration-300 ease-in-out ${isActive ? 'max-h-[120px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                      <p className="font-sans text-body-s text-ink-2 leading-relaxed">
+                    {/* Collapsible details (expanded directly inline on mobile as well when active for better vertical flow) */}
+                    <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isActive ? 'max-h-[120px] opacity-100 mt-2' : 'max-h-0 opacity-0 lg:max-h-0'}`}>
+                      <p className="font-sans text-[16px] md:text-body-s text-ink-2 leading-relaxed text-wrap-balance">
                         <T>{c.desc}</T>
                       </p>
                     </div>
                   </div>
                 );
               })}
-            </div>
-
-            {/* Mobile active description */}
-            <div className="lg:hidden mt-4 mb-6">
-              <p className="font-sans text-[16px] text-ink-2 leading-relaxed">
-                <T>{cases[activeTab].desc}</T>
-              </p>
             </div>
           </div>
 
@@ -223,7 +216,7 @@ export const Resultados: React.FC = () => {
               
               <div className="w-full h-full bg-panel flex flex-col items-center justify-center p-8 text-center mt-auto">
                 <span className="font-mono text-mono-eyebrow text-ink-3 mb-2 uppercase"><T>Depoimento em Vídeo (9:16)</T></span>
-                <span className="font-serif text-[16px] md:text-body text-ink italic mb-2"><T>{cases[activeTab].quote}</T></span>
+                <span className="font-serif text-[16px] md:text-body text-ink italic mb-2 text-wrap-balance"><T>{cases[activeTab].quote}</T></span>
                 <span className="text-[10px] font-mono text-ink-3"><T>{`Thumbnail otimizada • ${cases[activeTab].videoSrc}`}</T></span>
               </div>
             </div>
@@ -236,19 +229,19 @@ export const Resultados: React.FC = () => {
             <span className="font-mono text-mono-data text-amber font-semibold block">
               <CountUp end={5} prefix="+" suffix="MM" />
             </span>
-            <span className="font-sans text-[16px] md:text-body-s text-ink-2"><T>em vendas geradas</T></span>
+            <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>em vendas geradas</T></span>
           </div>
           <div className="py-4 sm:py-0 border-y sm:border-y-0 sm:border-x border-cream">
             <span className="font-mono text-mono-data text-ink font-semibold block">
               <CountUp end={10.4} decimals={1} suffix="k" />
             </span>
-            <span className="font-sans text-[16px] md:text-body-s text-ink-2"><T>acompanham no Instagram</T></span>
+            <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>acompanham no Instagram</T></span>
           </div>
           <div className="py-4 sm:py-0">
             <span className="font-mono text-mono-data text-ink font-semibold block">
               <CountUp end={200} prefix="+" />
             </span>
-            <span className="font-sans text-[16px] md:text-body-s text-ink-2"><T>Dras. atendidas</T></span>
+            <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>Dras. atendidas</T></span>
           </div>
         </div>
       </div>

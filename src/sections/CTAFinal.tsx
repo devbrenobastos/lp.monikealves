@@ -52,7 +52,7 @@ export const CTAFinal: React.FC = () => {
         setIsSubmitting(false);
       }
     } else {
-      // Fallback fallback to WhatsApp
+      // Fallback to WhatsApp
       const text = `Olá Monike, gostaria de me candidatar para a análise da minha clínica:\n\n` +
         `• Nome: ${formData.nome}\n` +
         `• WhatsApp: ${formData.whatsapp}\n` +
@@ -70,36 +70,36 @@ export const CTAFinal: React.FC = () => {
   };
 
   return (
-    <section id="aplicar" className="py-20 md:py-32 bg-panel border-b border-cream">
+    <section id="aplicar" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-panel border-b border-cream">
       <div 
         ref={revealRef}
-        className="max-w-content mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative"
+        className="max-w-content mx-auto px-5 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative"
       >
-        {/* Visual Line Signature Framed Backdrop decoration */}
+        {/* Visual Line Backdrop decoration */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[500px] aspect-square opacity-5 pointer-events-none z-0">
           <ProportionLine strokeColor="var(--olive-d)" dotColor="var(--olive)" amberColor="var(--amber)" className="w-full h-full" />
         </div>
 
-        {/* Left: Headline and secondary Whatsapp path */}
-        <div className="reveal-item lg:col-span-6 relative z-10">
+        {/* Left: Headline and secondary Whatsapp path (Centered on mobile) */}
+        <div className="reveal-item lg:col-span-6 relative z-10 text-center lg:text-left flex flex-col items-center lg:items-start">
           <Eyebrow className="mb-[12px]">PRÓXIMO PASSO</Eyebrow>
-          <h2 className="font-serif text-display-l text-ink font-normal leading-tight mb-[20px]">
+          <h2 className="font-serif text-[clamp(28px,6vw,40px)] text-ink font-normal leading-tight mb-[20px] text-wrap-balance">
             <T>Pronta para ser a referência da sua cidade?</T>
           </h2>
-          <p className="font-sans text-body-l text-ink-2 max-w-[62ch] mb-[40px] leading-relaxed">
+          <p className="font-sans text-[16px] md:text-body-l text-ink-2 max-w-[62ch] mb-[40px] leading-relaxed text-wrap-balance">
             <T>Se você chegou até aqui, já entendeu que talento sozinho não enche agenda. Candidate-se para uma análise da sua clínica. Eu olho sua operação e te mostro, sem compromisso, onde está o caminho para você atrair as pacientes certas e cobrar o que o seu trabalho vale.</T>
           </p>
 
-          <div className="space-y-4">
-            <span className="block font-sans text-body-s text-ink-3">
+          <div className="space-y-4 flex flex-col items-center lg:items-start w-full">
+            <span className="block font-sans text-body-s text-ink-3 text-wrap-balance">
               <T>Atendo poucas clínicas por vez para acompanhar cada uma de perto.</T>
             </span>
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full">
               <a 
                 href="https://wa.me/5581999999999" // Replace with actual number
                 target="_blank" 
                 rel="noreferrer"
-                className="inline-flex items-center justify-center border border-olive text-olive hover:bg-olive hover:text-paper px-6 py-3 rounded-full font-sans font-semibold text-body-s transition-all duration-300 min-h-[44px]"
+                className="inline-flex items-center justify-center border border-olive text-olive hover:bg-olive hover:text-paper px-6 py-3 rounded-full font-sans font-semibold text-body-s transition-all duration-300 min-h-[44px] w-full max-w-[280px]"
               >
                 <T>Falar no WhatsApp</T>
               </a>
@@ -108,20 +108,20 @@ export const CTAFinal: React.FC = () => {
         </div>
 
         {/* Right: Application Form */}
-        <div className="reveal-item lg:col-span-6 relative z-10">
+        <div className="reveal-item lg:col-span-6 relative z-10 w-full">
           <form 
             onSubmit={handleSubmit}
-            className="bg-paper border border-cream p-8 rounded-[20px] shadow-sm space-y-5"
+            className="bg-paper border border-cream p-6 md:p-8 rounded-[20px] shadow-sm space-y-5"
           >
-            <h3 className="font-serif text-display-m text-ink font-normal mb-2 leading-tight">
+            <h3 className="font-serif text-display-m text-ink font-normal mb-2 leading-tight text-center lg:text-left text-wrap-balance">
               <Balance>Formulário de aplicação</Balance>
             </h3>
-            <p className="font-sans text-body-s text-ink-2 mb-6">
+            <p className="font-sans text-body-s text-ink-2 mb-6 text-center lg:text-left text-wrap-balance">
               <T>Preencha os dados abaixo para analisarmos a sua clínica.</T>
             </p>
 
             <div>
-              <label htmlFor="nome" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2">Nome</label>
+              <label htmlFor="nome" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2 text-center lg:text-left">Nome</label>
               <input 
                 type="text" 
                 id="nome" 
@@ -129,14 +129,14 @@ export const CTAFinal: React.FC = () => {
                 required 
                 value={formData.nome}
                 onChange={handleInputChange}
-                className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-body text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all"
+                className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-[16px] text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all text-center lg:text-left"
                 placeholder="Seu nome completo"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="whatsapp" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2">WhatsApp</label>
+                <label htmlFor="whatsapp" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2 text-center lg:text-left">WhatsApp</label>
                 <input 
                   type="tel" 
                   id="whatsapp" 
@@ -144,13 +144,13 @@ export const CTAFinal: React.FC = () => {
                   required 
                   value={formData.whatsapp}
                   onChange={handleInputChange}
-                  className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-body text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all"
+                  className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-[16px] text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all text-center lg:text-left"
                   placeholder="(00) 00000-0000"
                 />
               </div>
 
               <div>
-                <label htmlFor="cidade" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2">Cidade / UF</label>
+                <label htmlFor="cidade" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2 text-center lg:text-left">Cidade / UF</label>
                 <input 
                   type="text" 
                   id="cidade" 
@@ -158,20 +158,20 @@ export const CTAFinal: React.FC = () => {
                   required 
                   value={formData.cidade}
                   onChange={handleInputChange}
-                  className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-body text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all"
+                  className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-[16px] text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all text-center lg:text-left"
                   placeholder="Sua cidade"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="formacao" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2">Sua formação</label>
+              <label htmlFor="formacao" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2 text-center lg:text-left">Sua formação</label>
               <select 
                 id="formacao" 
                 name="formacao"
                 value={formData.formacao}
                 onChange={handleInputChange}
-                className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-body text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all"
+                className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-[16px] text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all text-center lg:text-left"
               >
                 <option value="medica">Médica</option>
                 <option value="dentista">Dentista</option>
@@ -181,7 +181,7 @@ export const CTAFinal: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="faturamento" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2">Faturamento médio atual</label>
+              <label htmlFor="faturamento" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2 text-center lg:text-left">Faturamento médio atual</label>
               <input 
                 type="text" 
                 id="faturamento" 
@@ -189,13 +189,13 @@ export const CTAFinal: React.FC = () => {
                 required 
                 value={formData.faturamento}
                 onChange={handleInputChange}
-                className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-body text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all"
+                className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-[16px] text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all text-center lg:text-left"
                 placeholder="Ex: R$ 10.000 a R$ 30.000"
               />
             </div>
 
             <div>
-              <label htmlFor="trava" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2">O que mais te trava hoje?</label>
+              <label htmlFor="trava" className="block font-mono text-[11px] text-ink-2 uppercase tracking-wider mb-2 text-center lg:text-left">O que mais te trava hoje?</label>
               <textarea 
                 id="trava" 
                 name="trava"
@@ -203,7 +203,7 @@ export const CTAFinal: React.FC = () => {
                 rows={3}
                 value={formData.trava}
                 onChange={handleInputChange}
-                className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-body text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all resize-none"
+                className="w-full bg-panel border border-cream rounded-[8px] px-4 py-3 font-sans text-[16px] text-ink focus:outline-none focus:ring-1 focus:ring-olive focus:border-olive transition-all resize-none text-center lg:text-left"
                 placeholder="Descreva seu maior desafio no comercial ou marketing"
               />
             </div>

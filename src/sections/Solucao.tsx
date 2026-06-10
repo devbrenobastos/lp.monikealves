@@ -29,42 +29,38 @@ export const Solucao: React.FC = () => {
   const revealRef = useReveal();
 
   return (
-    <section id="metodo" className="py-20 md:py-32 bg-paper border-b border-cream">
+    <section id="metodo" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
       <div 
         ref={revealRef}
-        className="max-w-content mx-auto px-6 md:px-10"
+        className="max-w-content mx-auto px-5 md:px-10"
       >
-        {/* Header Block */}
-        <div className="reveal-item max-w-[62ch] mb-[40px]">
+        {/* Header Block (Centered on mobile) */}
+        <div className="reveal-item max-w-[62ch] mb-[40px] text-center md:text-left mx-auto md:mx-0 flex flex-col items-center md:items-start">
           <Eyebrow className="mb-[12px]">O QUE EU FAÇO</Eyebrow>
-          <h2 className="font-sans text-display-l text-ink font-light leading-tight mb-[20px]">
+          <h2 className="font-sans text-display-l text-ink font-light leading-tight mb-[20px] text-wrap-balance">
             <T>Eu cuido do funil inteiro — do anúncio à</T> <em className="font-serif text-olive not-italic italic font-normal"><T>cadeira.</T></em>
           </h2>
-          <p className="font-sans text-body-l text-ink-2 leading-relaxed">
+          <p className="font-sans text-[16px] md:text-body-l text-ink-2 leading-relaxed">
             <T>Não entrego só tráfego. Monto o sistema completo que leva a paciente certa do feed até o seu consultório, e treino quem vai recebê-la para vender sem parecer vendedora.</T>
           </p>
         </div>
 
-        {/* Alternate Block Layout (Zig-Zag) aligned to 12 columns */}
-        {/* 1a: align-items: center in md:grid */}
+        {/* Blocks Layout */}
         <div className="space-y-16 md:space-y-24">
           {/* Block 01 */}
-          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12">
-            <div className="md:col-span-1 align-self-start flex items-start">
+          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 text-center md:text-left">
+            <div className="md:col-span-1 align-self-start flex justify-center md:justify-start">
               <span className="font-mono text-[36px] md:text-[48px] text-mist font-medium leading-[1.1] pt-0">01</span>
             </div>
-            <div className="md:col-span-6">
-              {/* 1b: Título do card subir para ~24px (text-[24px]) */}
-              <h3 className="font-serif text-[24px] text-ink font-normal mb-3 leading-[1.1]">
+            <div className="md:col-span-6 flex flex-col items-center md:items-start">
+              <h3 className="font-serif text-[24px] text-ink font-normal mb-3 leading-[1.1] text-wrap-balance">
                 <Balance>Tráfego pago que atrai a paciente certa</Balance>
               </h3>
-              {/* 1b: Corpo do card subir para 16px (text-[16px]), max-width: 46ch */}
               <p className="font-sans text-[16px] text-ink-2 leading-relaxed max-w-[46ch] mb-6 md:mb-0">
                 <T>Anúncios desenhados para o público de harmonização, com segmentação, criativo e oferta pensados para atrair quem valoriza (e paga) o seu trabalho — não caçador de promoção.</T>
               </p>
             </div>
-            {/* 1c: Limitar imagem width: 100%, max-width: 420px, max-height: 260px, aspect-ratio: 4/3 */}
-            <div className="md:col-span-5 border border-cream rounded-[16px] overflow-hidden w-full max-w-[420px] max-h-[260px] aspect-[4/3] justify-self-center md:justify-self-end">
+            <div className="md:col-span-5 border border-cream rounded-[16px] overflow-hidden w-full max-w-[420px] max-h-[260px] aspect-[4/3] mx-auto md:mr-0 md:ml-auto">
               <picture>
                 <source
                   type="image/avif"
@@ -89,13 +85,29 @@ export const Solucao: React.FC = () => {
             </div>
           </div>
 
-          {/* Block 02 (Alternated) */}
-          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 md:flex-row-reverse">
-            <div className="md:col-span-1 md:order-1 align-self-start flex items-start">
+          {/* Block 02 - Reordered source code so text renders before image on mobile, with custom md:order tags for desktop alternate look */}
+          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 text-center md:text-left">
+            {/* Number: first in source, order-1 on desktop */}
+            <div className="md:col-span-1 md:order-1 align-self-start flex justify-center md:justify-start">
               <span className="font-mono text-[36px] md:text-[48px] text-mist font-medium leading-[1.1] pt-0">02</span>
             </div>
-            {/* 1c: Image container scale update */}
-            <div className="md:col-span-5 md:order-2 border border-cream rounded-[16px] overflow-hidden w-full max-w-[420px] max-h-[260px] aspect-[4/3] justify-self-center md:justify-self-start">
+            
+            {/* Text & Content: second in source (renders 2nd on mobile), md:order-3 on desktop (renders 3rd/right on desktop) */}
+            <div className="md:col-span-6 md:order-3 md:pl-8 flex flex-col items-center md:items-start">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-olive/10 rounded-full mb-3 mx-auto md:mx-0">
+                <span className="w-1.5 h-1.5 rounded-full bg-olive"></span>
+                <span className="font-mono text-[10px] text-olive-d uppercase tracking-wider font-semibold"><T>o que ninguém faz</T></span>
+              </div>
+              <h3 className="font-serif text-[24px] text-ink font-normal mb-3 leading-[1.1] text-wrap-balance">
+                <Balance>Time comercial que sabe conduzir</Balance>
+              </h3>
+              <p className="font-sans text-[16px] text-ink-2 leading-relaxed max-w-[46ch] mb-6 md:mb-0">
+                <T>Treino a sua recepção e o seu comercial para atender, qualificar e agendar com naturalidade. É a peça que quase ninguém cuida — e a que mais derruba faturamento quando falta.</T>
+              </p>
+            </div>
+
+            {/* Image: third in source (renders 3rd on mobile), md:order-2 on desktop (renders 2nd/middle on desktop) */}
+            <div className="md:col-span-5 md:order-2 border border-cream rounded-[16px] overflow-hidden w-full max-w-[420px] max-h-[260px] aspect-[4/3] mx-auto md:ml-0 md:mr-auto">
               <picture>
                 <source
                   type="image/avif"
@@ -118,39 +130,22 @@ export const Solucao: React.FC = () => {
                 />
               </picture>
             </div>
-            <div className="md:col-span-6 md:order-3 md:pl-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-olive/10 rounded-full mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-olive"></span>
-                <span className="font-mono text-[10px] text-olive-d uppercase tracking-wider font-semibold"><T>o que ninguém faz</T></span>
-              </div>
-              {/* 1b: Título do card subir para ~24px (text-[24px]) */}
-              <h3 className="font-serif text-[24px] text-ink font-normal mb-3 leading-[1.1]">
-                <Balance>Time comercial que sabe conduzir</Balance>
-              </h3>
-              {/* 1b: Corpo do card subir para 16px (text-[16px]), max-width: 46ch */}
-              <p className="font-sans text-[16px] text-ink-2 leading-relaxed max-w-[46ch]">
-                <T>Treino a sua recepção e o seu comercial para atender, qualificar e agendar com naturalidade. É a peça que quase ninguém cuida — e a que mais derruba faturamento quando falta.</T>
-              </p>
-            </div>
           </div>
 
           {/* Block 03 */}
-          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12">
-            <div className="md:col-span-1 align-self-start flex items-start">
+          <div className="reveal-item grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-cream pt-12 text-center md:text-left">
+            <div className="md:col-span-1 align-self-start flex justify-center md:justify-start">
               <span className="font-mono text-[36px] md:text-[48px] text-mist font-medium leading-[1.1] pt-0">03</span>
             </div>
-            <div className="md:col-span-6">
-              {/* 1b: Título do card subir para ~24px (text-[24px]) */}
-              <h3 className="font-serif text-[24px] text-ink font-normal mb-3 leading-[1.1]">
+            <div className="md:col-span-6 flex flex-col items-center md:items-start">
+              <h3 className="font-serif text-[24px] text-ink font-normal mb-3 leading-[1.1] text-wrap-balance">
                 <Balance>Conteúdo e criativos que posicionam</Balance>
               </h3>
-              {/* 1b: Corpo do card subir para 16px (text-[16px]), max-width: 46ch */}
               <p className="font-sans text-[16px] text-ink-2 leading-relaxed max-w-[46ch] mb-6 md:mb-0">
                 <T>Roteiro e edição dos criativos que te colocam como referência local. Conteúdo que vende sem gritar, no padrão editorial que combina com o seu trabalho.</T>
               </p>
             </div>
-            {/* 1c: Image container scale update */}
-            <div className="md:col-span-5 border border-cream rounded-[16px] overflow-hidden w-full max-w-[420px] max-h-[260px] aspect-[4/3] justify-self-center md:justify-self-end">
+            <div className="md:col-span-5 border border-cream rounded-[16px] overflow-hidden w-full max-w-[420px] max-h-[260px] aspect-[4/3] mx-auto md:mr-0 md:ml-auto">
               <picture>
                 <source
                   type="image/avif"
@@ -178,7 +173,7 @@ export const Solucao: React.FC = () => {
 
         {/* Section conclusion text */}
         <div className="reveal-item mt-16 md:mt-24 border-t border-cream pt-8 text-center">
-          <p className="font-sans text-body-l text-ink-3">
+          <p className="font-sans text-[16px] md:text-body-l text-ink-3 mx-auto text-wrap-balance">
             <T>Atrair, converter e aparecer — as três peças trabalhando juntas, não cada uma por conta.</T>
           </p>
         </div>
