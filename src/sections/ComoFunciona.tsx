@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useReveal } from '../hooks/useReveal';
 import { Balance } from '../components/Balance';
 import { T } from '../components/T';
@@ -6,6 +6,9 @@ import { Eyebrow } from '../components/Eyebrow';
 
 export const ComoFunciona: React.FC = () => {
   const revealRef = useReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [fillProgress, setFillProgress] = useState(0);
+  const [prefersReduced, setPrefersReduced] = useState(false);
 
   const steps = [
     {
@@ -30,9 +33,40 @@ export const ComoFunciona: React.FC = () => {
     }
   ];
 
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReduced(mq.matches);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      const totalDist = rect.height + windowHeight;
+      const currentDist = windowHeight - rect.top;
+      
+      let progress = currentDist / totalDist;
+      progress = Math.max(0, Math.min(1, progress));
+      
+      const startThreshold = 0.25;
+      const endThreshold = 0.75;
+      
+      let fill = (progress - startThreshold) / (endThreshold - startThreshold);
+      fill = Math.max(0, Math.min(1, fill));
+      
+      setFillProgress(fill);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     // 3: clamp(80px, 10vw, 140px) vertical padding for dark section
-    <section className="py-[clamp(80px,10vw,140px)] bg-d-bg text-paper relative overflow-hidden">
+    <section ref={sectionRef} className="py-[clamp(80px,10vw,140px)] bg-d-bg text-paper relative overflow-hidden">
       {/* Editorial dark line accents */}
       <div className="absolute inset-0 bg-gradient-to-b from-d-surface to-d-bg pointer-events-none opacity-40 z-0"></div>
 
@@ -56,7 +90,14 @@ export const ComoFunciona: React.FC = () => {
           {/* Vertical connecting line (for desktop and mobile) */}
           <div className="absolute left-4 md:left-[50%] top-0 bottom-0 w-[1px] bg-d-line pointer-events-none">
             {/* Olive active indicator scroll-driven timeline fill */}
-            <div className="timeline-fill absolute top-0 left-0 w-full h-full rounded"></div>
+            <div 
+              className="absolute top-0 left-0 w-full bg-olive-h rounded origin-top"
+              style={{ 
+                height: '100%',
+                transform: `scaleY(${prefersReduced ? 1 : fillProgress})`,
+                transition: prefersReduced ? 'none' : 'transform 75ms linear'
+              }}
+            ></div>
           </div>
 
           {/* 3: gap vertical clamp(32px, 4vw, 56px) between items */}

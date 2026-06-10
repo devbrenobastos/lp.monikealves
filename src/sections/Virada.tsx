@@ -22,13 +22,13 @@ export const Virada: React.FC = () => {
           </h2>
         </div>
 
-        <div className="reveal-item max-w-[62ch] mx-auto text-left md:text-center mb-16">
+        <div className="reveal-item max-w-[62ch] mx-auto text-left md:text-center mb-24">
           <p className="font-sans text-body-l text-ink-2 leading-relaxed">
             <T>Anúncio não é uma máquina de pacientes que você liga e esquece. Ele só funciona quando existe um posicionamento que faz você ser desejada antes do primeiro real investido, uma oferta que a paciente entende na hora, e alguém preparado para conduzir a conversa até o agendamento. Quando essas três peças não conversam, o dinheiro do anúncio escorre pelo ralo — e a culpa cai injustamente no "tráfego".</T>
           </p>
         </div>
 
-        <div className="reveal-item max-w-[52ch] mx-auto flex flex-col items-start text-left border-l-2 border-l-olive pl-6 relative">
+        <div className="reveal-item max-w-[760px] mx-auto flex flex-col items-start text-left border-l-2 border-l-olive pl-6 relative">
           <span className="absolute -top-8 -left-4 font-serif text-[80px] text-olive opacity-25 leading-none select-none">“</span>
           
           <blockquote className="font-serif text-[28px] text-ink italic leading-[1.35] tracking-[0.01em] whitespace-pre-line">
