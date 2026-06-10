@@ -29,9 +29,9 @@ const CountUp: React.FC<{ end: number; decimals?: number; duration?: number; pre
         let startTimestamp: number | null = null;
         const step = (timestamp: number) => {
           if (!startTimestamp) startTimestamp = timestamp;
-          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-          setCount(progress * end);
-          if (progress < 1) {
+          const MathProgress = Math.min((timestamp - startTimestamp) / duration, 1);
+          setCount(MathProgress * end);
+          if (MathProgress < 1) {
             window.requestAnimationFrame(step);
           }
         };
@@ -131,10 +131,10 @@ export const Resultados: React.FC = () => {
         ref={revealRef}
         className="max-w-content mx-auto px-5 md:px-10"
       >
-        {/* Header Block (Centered on mobile) */}
-        <div className="reveal-item max-w-[60ch] mx-auto text-center mb-[40px] flex flex-col items-center">
+        {/* Header Block (Left-aligned on mobile) */}
+        <div className="reveal-item max-w-[60ch] mb-[40px] text-left flex flex-col items-start">
           <Eyebrow className="mb-[12px]">RESULTADOS REAIS</Eyebrow>
-          <h2 className="font-sans text-display-l text-ink font-light leading-tight mb-[20px] text-wrap-balance">
+          <h2 className="font-sans text-[clamp(26px,5vw,44px)] text-ink font-light leading-tight mb-[20px] text-wrap-balance">
             <T>O que muda quando a estratégia</T> <em className="font-serif text-olive not-italic italic font-normal"><T>entra</T></em>
           </h2>
           <p className="font-sans text-[16px] md:text-body-l text-ink-2 leading-relaxed text-wrap-balance">
@@ -146,9 +146,9 @@ export const Resultados: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
           {/* Cases Column */}
           <div className="lg:col-span-7 flex flex-col justify-between">
-            {/* Stacked vertically one below the other on mobile, no horizontal scroll */}
+            {/* Stacked vertically, left-aligned on mobile */}
             <div 
-              className="flex flex-col lg:flex-col gap-6 lg:gap-0 border-b-0 lg:border-b-0 border-cream pb-0 lg:pb-0"
+              className="flex flex-col gap-6 lg:gap-0 border-b-0 lg:border-b-0 border-cream pb-0 lg:pb-0"
               role="tablist"
               aria-label="Resultados por caso"
               aria-orientation="vertical"
@@ -166,7 +166,7 @@ export const Resultados: React.FC = () => {
                     tabIndex={isActive ? 0 : -1}
                     onClick={() => handleTabChange(idx)}
                     onKeyDown={(e) => handleKeyDown(e, idx)}
-                    className={`cursor-pointer text-center lg:text-left pb-4 lg:py-6 border-b lg:border-b border-cream lg:border-cream transition-all duration-300 outline-none focus-visible:ring-1 focus-visible:ring-olive relative pl-0 lg:pl-6 flex-shrink-0 lg:flex-shrink
+                    className={`cursor-pointer text-left pb-4 lg:py-6 border-b border-cream lg:border-cream transition-all duration-300 outline-none focus-visible:ring-1 focus-visible:ring-olive relative pl-0 lg:pl-6 flex-shrink-0 lg:flex-shrink
                       ${isActive ? 'opacity-100 border-olive' : 'opacity-55 hover:opacity-80'}
                     `}
                   >
@@ -182,7 +182,7 @@ export const Resultados: React.FC = () => {
                       <Balance>{c.title}</Balance>
                     </h3>
                     
-                    {/* Collapsible details (expanded directly inline on mobile as well when active for better vertical flow) */}
+                    {/* Collapsible details */}
                     <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isActive ? 'max-h-[120px] opacity-100 mt-2' : 'max-h-0 opacity-0 lg:max-h-0'}`}>
                       <p className="font-sans text-[16px] md:text-body-s text-ink-2 leading-relaxed text-wrap-balance">
                         <T>{c.desc}</T>
@@ -201,7 +201,7 @@ export const Resultados: React.FC = () => {
             id={`panel-${cases[activeTab].id}`}
             aria-labelledby={`tab-${cases[activeTab].id}`}
           >
-            <div className={`absolute inset-0 flex flex-col justify-between w-full h-full p-8 text-center transition-opacity duration-200 ${fadeState}`}>
+            <div className={`absolute inset-0 flex flex-col justify-between w-full h-full p-8 text-left transition-opacity duration-200 ${fadeState}`}>
               <div className="absolute inset-0 bg-ink-2/10 flex items-center justify-center z-10">
                 <button 
                   type="button" 
@@ -214,7 +214,7 @@ export const Resultados: React.FC = () => {
                 </button>
               </div>
               
-              <div className="w-full h-full bg-panel flex flex-col items-center justify-center p-8 text-center mt-auto">
+              <div className="w-full h-full bg-panel flex flex-col items-start justify-center p-8 text-left mt-auto">
                 <span className="font-mono text-mono-eyebrow text-ink-3 mb-2 uppercase"><T>Depoimento em Vídeo (9:16)</T></span>
                 <span className="font-serif text-[16px] md:text-body text-ink italic mb-2 text-wrap-balance"><T>{cases[activeTab].quote}</T></span>
                 <span className="text-[10px] font-mono text-ink-3"><T>{`Thumbnail otimizada • ${cases[activeTab].videoSrc}`}</T></span>
@@ -223,22 +223,22 @@ export const Resultados: React.FC = () => {
           </div>
         </div>
 
-        {/* Stats Summary strip with Count-Up animation */}
-        <div className="reveal-item border-t border-cream pt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-          <div className="py-4 sm:py-0">
-            <span className="font-mono text-mono-data text-amber font-semibold block">
+        {/* Stats Summary strip - Left-aligned on mobile, 3 columns on desktop */}
+        <div className="reveal-item border-t border-cream pt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+          <div className="py-4 sm:py-0 flex flex-col items-start">
+            <span className="font-mono text-mono-data text-amber font-semibold block mb-1">
               <CountUp end={5} prefix="+" suffix="MM" />
             </span>
             <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>em vendas geradas</T></span>
           </div>
-          <div className="py-4 sm:py-0 border-y sm:border-y-0 sm:border-x border-cream">
-            <span className="font-mono text-mono-data text-ink font-semibold block">
+          <div className="py-4 sm:py-0 border-y sm:border-y-0 sm:border-x border-cream flex flex-col items-start sm:px-6">
+            <span className="font-mono text-mono-data text-ink font-semibold block mb-1">
               <CountUp end={10.4} decimals={1} suffix="k" />
             </span>
             <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>acompanham no Instagram</T></span>
           </div>
-          <div className="py-4 sm:py-0">
-            <span className="font-mono text-mono-data text-ink font-semibold block">
+          <div className="py-4 sm:py-0 flex flex-col items-start sm:px-6">
+            <span className="font-mono text-mono-data text-ink font-semibold block mb-1">
               <CountUp end={200} prefix="+" />
             </span>
             <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>Dras. atendidas</T></span>

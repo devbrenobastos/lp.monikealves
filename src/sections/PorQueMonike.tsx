@@ -32,7 +32,7 @@ export const PorQueMonike: React.FC = () => {
   ];
 
   return (
-    <section className="py-[clamp(56px,9vw,80px)] md:py-32 bg-paper border-b border-cream">
+    <section className="py-[clamp(56px,9vw,80px)] md:py-[160px] bg-paper border-b border-cream">
       <div 
         ref={revealRef}
         className="max-w-content mx-auto px-5 md:px-10"

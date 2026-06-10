@@ -20,16 +20,16 @@ export const Hero: React.FC = () => {
       style={{ minHeight: '80vh' }}
     >
       <div 
-        className="max-w-content mx-auto px-5 md:px-10 flex flex-col md:grid md:grid-cols-12 gap-8 md:gap-6 items-center w-full flex-grow py-8 md:py-12"
+        className="max-w-content mx-auto px-5 md:px-10 flex flex-col md:grid md:grid-cols-12 gap-8 md:gap-6 items-start w-full flex-grow py-8 md:py-12"
       >
-        {/* Headline and CTA - First on mobile (order-1), left on desktop (md:order-1) */}
-        <div className="order-1 md:order-1 w-full md:col-span-7 flex flex-col justify-center h-full text-center md:text-left items-center md:items-start">
-          <div className="flex flex-col items-center md:items-start">
-            <div className="opacity-0 animate-fade-up flex justify-center md:justify-start">
+        {/* Headline and CTA - Left-aligned on mobile and desktop */}
+        <div className="order-1 md:order-1 w-full md:col-span-7 flex flex-col justify-center h-full text-left items-start">
+          <div className="flex flex-col items-start">
+            <div className="opacity-0 animate-fade-up flex justify-start">
               <Eyebrow className="mb-[12px]">MARKETING E VENDAS PARA HOF</Eyebrow>
             </div>
             
-            <h1 className="font-serif text-[clamp(1.75rem,1.1rem+2vw,2.5rem)] text-ink font-normal leading-[1.15] tracking-[-0.01em] mb-[24px] select-none text-wrap-balance opacity-0 animate-fade-up [animation-delay:80ms]">
+            <h1 className="font-serif text-[clamp(28px,6vw,40px)] text-ink font-normal leading-[1.15] tracking-[-0.01em] mb-[24px] select-none text-wrap-balance opacity-0 animate-fade-up [animation-delay:80ms]">
               <T>Sua agenda não está vazia por falta de tráfego. Está por falta de</T>{' '}
               <em className="text-olive not-italic italic font-normal inline-block"><T>estratégia.</T></em>
             </h1>
@@ -40,22 +40,22 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="flex flex-col items-center md:items-start w-full opacity-0 animate-fade-up [animation-delay:240ms]">
+          <div className="flex flex-col items-start w-full opacity-0 animate-fade-up [animation-delay:240ms]">
             <a 
               href="#aplicar" 
               onClick={handleApplyClick}
-              className="inline-flex items-center justify-between bg-olive text-paper hover:bg-olive-d px-[28px] py-[16px] rounded-[10px] font-sans font-semibold text-[16px] transition-all duration-300 transform hover:-translate-y-[1px] active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-olive focus:ring-offset-2 min-h-[44px] w-full max-w-[340px] group"
+              className="inline-flex items-center justify-between bg-olive text-paper hover:bg-olive-d px-[28px] py-[16px] rounded-[10px] font-sans font-semibold text-[16px] transition-all duration-300 transform hover:-translate-y-[1px] active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-olive focus:ring-offset-2 min-h-[48px] w-full max-w-[340px] group"
             >
               <span><T>Aplique-se</T></span>
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
-            <span className="font-sans text-[13px] text-ink-3 mt-[12px] block px-1 text-center md:text-left text-wrap-balance">
+            <span className="font-sans text-[13px] text-ink-3 mt-[12px] block px-1 text-left text-wrap-balance">
               <T>Vagas limitadas — atendo poucas clínicas por vez.</T>
             </span>
           </div>
 
           {/* Social Proof */}
-          <div className="mt-[24px] flex items-center justify-center md:justify-start gap-3 opacity-0 animate-fade-up [animation-delay:320ms]">
+          <div className="mt-[24px] flex items-center justify-start gap-3 opacity-0 animate-fade-up [animation-delay:320ms]">
             <div className="flex -space-x-2 overflow-hidden">
               <div className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper bg-panel flex items-center justify-center font-mono text-[8px] text-ink-3">Dr</div>
               <div className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper bg-panel flex items-center justify-center font-mono text-[8px] text-ink-3">Dr</div>
@@ -70,7 +70,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Editorial Portrait - Second on mobile (order-2), right on desktop (md:order-2) */}
-        <div className="order-2 md:order-2 w-full md:col-span-5 relative self-stretch md:h-full min-h-[300px] md:min-h-[500px] flex items-center justify-center md:justify-end overflow-hidden animate-photo-reveal">
+        <div className="order-2 md:order-2 w-full md:col-span-5 relative self-stretch md:h-full min-h-[300px] md:min-h-[500px] flex items-center justify-start overflow-hidden animate-photo-reveal">
           <div className="relative w-full md:w-[95%] aspect-[4/5] md:aspect-auto bg-panel rounded-[16px] md:rounded-[20px] overflow-hidden border border-cream h-full flex items-center justify-center">
             {/* Editorial Background Graphics */}
             <div className="absolute inset-0 bg-gradient-to-t from-panel/30 via-transparent to-transparent opacity-80 z-0"></div>
@@ -91,7 +91,7 @@ export const Hero: React.FC = () => {
             </div>
             
             <div className="text-center p-6 z-10 select-none">
-              <span className="font-serif text-[18px] text-ink italic block mb-2"><T>Monike Alves</T></span>
+              <span className="font-serif text-[30px] text-ink italic block mb-2"><T>Monike Alves</T></span>
               <span className="font-mono text-[9px] text-ink-3 uppercase tracking-widest"><T>Retrato Editorial (4:5)</T></span>
             </div>
           </div>
@@ -117,9 +117,9 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Social Proof Stats Bar */}
+      {/* Social Proof Stats Bar - Left-aligned on mobile, 3 columns on desktop */}
       <div className="bg-paper border-b border-cream py-[32px] mt-0">
-        <div className="max-w-content mx-auto px-5 md:px-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left pt-2">
+        <div className="max-w-content mx-auto px-5 md:px-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left pt-2">
           <div className="flex flex-col sm:border-r sm:border-cream sm:pr-6 py-2 sm:py-0">
             <span className="font-mono text-mono-data text-amber font-medium">
               <T>R$ 5 MILHÕES</T>

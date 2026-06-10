@@ -13,7 +13,7 @@ export const Balance: React.FC<BalanceProps> = ({ children }) => {
     : children;
     
   return (
-    <span style={{ textWrap: 'balance' }} className="inline-block">
+    <span style={{ textWrap: 'balance' }} className="inline">
       {glued}
     </span>
   );
