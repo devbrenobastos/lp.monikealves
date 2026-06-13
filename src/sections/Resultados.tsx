@@ -69,30 +69,23 @@ export const Resultados: React.FC = () => {
   const cases = [
     {
       id: "case-1",
-      number: "R$ 7.000 → R$ 50.000",
-      suffix: "/mês",
-      title: "Caso 1",
-      desc: "Saiu de um faturamento de sete mil para cinquenta mil mensais depois de reorganizar oferta, anúncio e atendimento.",
-      quote: "\"Minha agenda mudou completamente...\"",
-      videoSrc: "placeholder-video-1",
+      number: "Faturamento 3×",
+      suffix: "",
+      title: "Caso 1 — Dra. Amanda Zanata",
+      desc: "Buscava escalar seus resultados na Harmonização Facial. Com menos de um mês de parceria e tráfego pago estratégico, triplicou o faturamento do seu consultório e alcançou um novo patamar de faturamento através de um suporte ativo pós-expediente e processos alinhados.",
+      quote: "\"Com menos de um mês de parceria, triplicou o faturamento do seu consultório...\"",
+      videoSrc: "Dc5ZgYqVV9w",
+      isTextLabel: false
     },
     {
       id: "case-2",
-      number: "Faturamento 3×",
+      number: "Construção de Autoridade & Expansão",
       suffix: "",
-      title: "Caso 2",
-      desc: "Triplicou o faturamento no primeiro mês de trabalho conjunto.",
-      quote: "\"Fomos do zero ao lotado em semanas...\"",
-      videoSrc: "placeholder-video-2",
-    },
-    {
-      id: "case-3",
-      number: "R$ 4.500 → R$ 49.730",
-      suffix: "",
-      title: "Caso 3",
-      desc: "Dra. [nome] em 2025: quase 50 mil em um período que antes fechava em quatro mil e meio.",
-      quote: "\"Nunca imaginei que o retorno seria tão rápido...\"",
-      videoSrc: "placeholder-video-3",
+      title: "Caso 2 — Dra. Daniele Gaiotte",
+      desc: "Parceria de longo prazo focada em branding e posicionamento digital premium. Traduziu a excelência do consultório para o digital, gerando autoridade para palestrar em grandes congressos e uma verdadeira explosão de crescimento com a fundação da Gaiotte Clinic.",
+      quote: "\"Traduziu a excelência do consultório para o digital, gerando autoridade...\"",
+      videoSrc: "Fn1S74E1DiM",
+      isTextLabel: true
     }
   ];
 
@@ -177,15 +170,15 @@ export const Resultados: React.FC = () => {
                       <div className="hidden lg:block absolute left-0 top-6 bottom-6 w-[2px] bg-olive rounded-full" />
                     )}
                     
-                    <span className={`font-mono text-[20px] lg:text-[32px] block mb-1 lg:mb-2 font-semibold tracking-tight transition-colors ${isActive ? 'text-amber' : 'text-ink-3'}`}>
-                      <span className="nowrap">{c.number}</span> {c.suffix && <span className="text-xs md:text-sm font-sans text-ink-3 font-normal">{c.suffix}</span>}
+                    <span className={`font-serif italic text-olive text-[20px] lg:text-[28px] block mb-1 lg:mb-2 font-normal tracking-normal transition-colors`}>
+                      {c.number}
                     </span>
                     <h3 className="font-serif text-[16px] lg:text-body text-ink font-normal leading-tight text-wrap-balance">
                       <Balance>{c.title}</Balance>
                     </h3>
                     
                     {/* Collapsible details */}
-                    <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isActive ? 'max-h-[120px] opacity-100 mt-2' : 'max-h-0 opacity-0 lg:max-h-0'}`}>
+                    <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isActive ? 'max-h-[160px] opacity-100 mt-2' : 'max-h-0 opacity-0 lg:max-h-0'}`}>
                       <p className="font-sans text-[16px] md:text-body-s text-ink-2 leading-relaxed text-wrap-balance">
                         <T>{c.desc}</T>
                       </p>

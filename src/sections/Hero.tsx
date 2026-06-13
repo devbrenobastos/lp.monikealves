@@ -71,11 +71,8 @@ const CountUp: React.FC<{ end: number; decimals?: number; duration?: number; pre
 export const Hero: React.FC = () => {
   const handleApplyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const ctaSection = document.getElementById('aplicar');
-    if (ctaSection) {
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      ctaSection.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
-    }
+    const whatsappUrl = "https://wa.me/556596679578?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais";
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -107,7 +104,7 @@ export const Hero: React.FC = () => {
           {/* CTA Button */}
           <div className="flex flex-col items-start w-full opacity-0 animate-fade-up [animation-delay:240ms]">
             <a 
-              href="#aplicar" 
+              href="https://wa.me/556596679578?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais" 
               onClick={handleApplyClick}
               className="inline-flex items-center justify-between bg-olive text-paper hover:bg-olive-d px-[28px] py-[16px] rounded-[10px] font-sans font-semibold text-[16px] transition-all duration-300 transform hover:-translate-y-[1px] active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-olive focus:ring-offset-2 min-h-[48px] w-full md:max-w-[340px] group"
             >
@@ -122,10 +119,10 @@ export const Hero: React.FC = () => {
           {/* Social Proof */}
           <div className="mt-[24px] flex items-center justify-start gap-3 opacity-0 animate-fade-up [animation-delay:320ms]">
             <div className="flex -space-x-2 overflow-hidden">
-              <div className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper bg-panel flex items-center justify-center font-mono text-[8px] text-ink-3">Dr</div>
-              <div className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper bg-panel flex items-center justify-center font-mono text-[8px] text-ink-3">Dr</div>
-              <div className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper bg-panel flex items-center justify-center font-mono text-[8px] text-ink-3">Dr</div>
-              <div className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper bg-panel flex items-center justify-center font-mono text-[8px] text-ink-3">Dr</div>
+              <img src="/imgs/clientes/WhatsApp Image 2026-06-13 at 11.53.03.jpeg" alt="Dra. Amanda Zanata" className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper object-cover object-center bg-panel" />
+              <img src="/imgs/clientes/WhatsApp Image 2026-06-13 at 11.50.59.jpeg" alt="Dra. Daniele Gaiotte" className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper object-cover object-center bg-panel" />
+              <img src="/imgs/clientes/WhatsApp Image 2026-06-13 at 11.58.08.jpeg" alt="Dra." className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper object-cover object-center bg-panel" />
+              <img src="/imgs/clientes/WhatsApp Image 2026-03-03 at 10.01.05.jpeg" alt="Dra." className="inline-block h-[28px] w-[28px] rounded-full ring-2 ring-paper object-cover object-center bg-panel" />
             </div>
             <span className="font-sans text-[14px] text-ink-2">
               <span className="font-serif italic text-olive font-normal mr-1"><T>+200</T></span>
