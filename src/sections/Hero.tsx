@@ -2,17 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { T } from '../components/T';
 import { ArrowRight } from 'lucide-react';
 import { Eyebrow } from '../components/Eyebrow';
-import Hero360Webp from '../assets/Hero-360.webp';
-import Hero360Avif from '../assets/Hero-360.avif';
-import Hero480Webp from '../assets/Hero-480.webp';
-import Hero480Avif from '../assets/Hero-480.avif';
-import Hero768Webp from '../assets/Hero-768.webp';
-import Hero768Avif from '../assets/Hero-768.avif';
-import Hero1100Webp from '../assets/Hero-1100.webp';
-import Hero1100Avif from '../assets/Hero-1100.avif';
-import Hero1400Webp from '../assets/Hero-1400.webp';
-import Hero1400Avif from '../assets/Hero-1400.avif';
-import HeroImgFallback from '../assets/Hero-1100.webp';
 
 // Viewport-triggered count-up animation component
 const CountUp: React.FC<{ end: number; decimals?: number; duration?: number; prefix?: string; suffix?: string }> = ({ 
@@ -137,16 +126,16 @@ export const Hero: React.FC = () => {
             <picture className="absolute inset-0 w-full h-full z-0">
               <source 
                 type="image/avif" 
-                srcSet={`${Hero360Avif} 360w, ${Hero480Avif} 480w, ${Hero768Avif} 768w, ${Hero1100Avif} 1100w, ${Hero1400Avif} 1400w`}
+                srcSet="/Hero-360.avif 360w, /Hero-480.avif 480w, /Hero-768.avif 768w, /Hero-1100.avif 1100w, /Hero-1400.avif 1400w"
                 sizes="(max-width: 768px) 100vw, 40vw"
               />
               <source 
                 type="image/webp" 
-                srcSet={`${Hero360Webp} 360w, ${Hero480Webp} 480w, ${Hero768Webp} 768w, ${Hero1100Webp} 1100w, ${Hero1400Webp} 1400w`}
+                srcSet="/Hero-360.webp 360w, /Hero-480.webp 480w, /Hero-768.webp 768w, /Hero-1100.webp 1100w, /Hero-1400.webp 1400w"
                 sizes="(max-width: 768px) 100vw, 40vw"
               />
               <img 
-                src={HeroImgFallback} 
+                src="/Hero-1100.webp" 
                 alt="Monike Alves - Marketing e Vendas para HOF" 
                 className="w-full h-full object-cover"
                 width="480"
