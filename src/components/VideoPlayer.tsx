@@ -16,7 +16,7 @@ declare global {
 }
 
 function loadYoutubeAPI() {
-  if (window.YT) return Promise.resolve();
+  if (window.YT && window.YT.Player) return Promise.resolve();
   return new Promise<void>((resolve) => {
     const existing = document.getElementById('youtube-iframe-api');
     if (existing) {
@@ -42,93 +42,96 @@ function loadYoutubeAPI() {
 }
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({ title, quote, videoSrc, fadeState }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const playerRef = useRef<any>(null);
 
   useEffect(() => {
-    setIsLoaded(false);
     setIsPlaying(false);
-    return () => {
-      if (playerRef.current) {
-        try {
-          playerRef.current.destroy();
-        } catch (e) {
-          // Ignore
-        }
-        playerRef.current = null;
-      }
-    };
-  }, [videoSrc]);
+    setIsReady(false);
+    let active = true;
 
-  useEffect(() => {
-    if (isLoaded) {
-      loadYoutubeAPI().then(() => {
-        // Allow DOM to update and render the iframe container element
-        setTimeout(() => {
-          if (!isLoaded) return;
+    loadYoutubeAPI().then(() => {
+      if (!active) return;
+      try {
+        if (playerRef.current) {
           try {
-            playerRef.current = new window.YT.Player(`yt-player-${videoSrc}`, {
-              events: {
-                onStateChange: (event: any) => {
-                  if (event.data === 1) {
-                    setIsPlaying(true);
-                  } else if (event.data === 2 || event.data === 0) {
-                    // If paused or ended, return to poster
-                    setIsPlaying(false);
-                    setIsLoaded(false);
-                    if (playerRef.current) {
-                      try {
-                        playerRef.current.destroy();
-                      } catch (e) {}
-                      playerRef.current = null;
-                    }
-                  }
-                }
+            playerRef.current.destroy();
+          } catch (e) {}
+          playerRef.current = null;
+        }
+
+        playerRef.current = new window.YT.Player(`yt-player-${videoSrc}`, {
+          videoId: videoSrc,
+          playerVars: {
+            autoplay: 0,
+            controls: 0,
+            modestbranding: 1,
+            rel: 0,
+            fs: 0,
+            disablekb: 1,
+            iv_load_policy: 3,
+            playsinline: 1,
+            enablejsapi: 1,
+            origin: window.location.origin
+          },
+          events: {
+            onReady: () => {
+              if (active) {
+                setIsReady(true);
               }
-            });
-          } catch (e) {
-            console.error("Error loading YouTube Player:", e);
+            },
+            onStateChange: (event: any) => {
+              if (!active) return;
+              if (event.data === 1) {
+                setIsPlaying(true);
+              } else if (event.data === 2) {
+                setIsPlaying(false);
+              } else if (event.data === 0) {
+                setIsPlaying(false);
+                try {
+                  event.target.seekTo(0);
+                } catch (e) {}
+              }
+            }
           }
-        }, 100);
-      });
-    } else {
+        });
+      } catch (e) {
+        console.error("Error loading YouTube Player:", e);
+      }
+    });
+
+    return () => {
+      active = false;
       if (playerRef.current) {
         try {
           playerRef.current.destroy();
         } catch (e) {}
         playerRef.current = null;
       }
-    }
-  }, [isLoaded, videoSrc]);
+    };
+  }, [videoSrc]);
 
   const handlePlayToggle = () => {
-    if (!isLoaded) {
-      setIsLoaded(true);
-      setIsPlaying(true);
+    if (!playerRef.current || !isReady) return;
+
+    if (!isPlaying) {
+      try {
+        playerRef.current.playVideo();
+        setIsPlaying(true);
+      } catch (e) {
+        console.error("Failed to play video:", e);
+      }
     } else {
-      if (playerRef.current) {
-        if (isPlaying) {
-          try {
-            playerRef.current.pauseVideo();
-          } catch (e) {}
-          setIsPlaying(false);
-          setIsLoaded(false);
-          if (playerRef.current) {
-            try {
-              playerRef.current.destroy();
-            } catch (e) {}
-            playerRef.current = null;
-          }
-        }
-      } else {
+      try {
+        playerRef.current.pauseVideo();
         setIsPlaying(false);
-        setIsLoaded(false);
+      } catch (e) {
+        console.error("Failed to pause video:", e);
       }
     }
   };
 
-  // Thumbnail / poster url
   const posterUrl = `https://img.youtube.com/vi/${videoSrc}/hqdefault.jpg`;
 
   return (
@@ -145,7 +148,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ title, quote, videoSrc
           aria-hidden="true"
         />
 
-        {/* Custom Play Button UI Overlay */}
+        {/* Custom Play/Pause Button UI Overlay */}
         <div className={`absolute inset-0 flex items-center justify-center z-10 pointer-events-none transition-opacity duration-300 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
           <button 
             type="button" 
@@ -156,7 +159,9 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ title, quote, videoSrc
               handlePlayToggle();
             }}
           >
-            {isPlaying ? (
+            {!isReady ? (
+              <div className="w-6 h-6 border-2 border-olive border-t-transparent rounded-full animate-spin" />
+            ) : isPlaying ? (
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
               </svg>
@@ -169,39 +174,22 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ title, quote, videoSrc
         </div>
 
         {/* Facade Poster Image */}
-        {!isLoaded && (
-          <img 
-            src={posterUrl} 
-            alt={`Depoimento ${title}`} 
-            className="absolute inset-0 w-full h-full object-cover z-0 filter brightness-90"
-            loading="lazy"
-          />
-        )}
+        <img 
+          src={posterUrl} 
+          alt={`Depoimento ${title}`} 
+          className={`absolute inset-0 w-full h-full object-cover z-0 filter brightness-90 transition-opacity duration-300 pointer-events-none ${isPlaying ? 'opacity-0' : 'opacity-100'}`}
+        />
 
-        {/* YouTube Iframe element target with crop scaling to remove black side bars and top/bottom overlays */}
-        {isLoaded && (
-          <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden rounded-[16px]">
-            <div className="absolute w-[427%] h-[135%] -left-[163.5%] -top-[17.5%] pointer-events-none">
-              <iframe 
-                id={`yt-player-${videoSrc}`} 
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${videoSrc}?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&fs=0&disablekb=1&iv_load_policy=3&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`}
-                title={title}
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-              />
-            </div>
+        {/* YouTube Iframe container target with crop scaling */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden rounded-[16px]">
+          <div className="absolute w-[427%] h-[135%] -left-[163.5%] -top-[17.5%] pointer-events-none">
+            <div 
+              id={`yt-player-${videoSrc}`} 
+              className="w-full h-full"
+            />
           </div>
-        )}
+        </div>
       </div>
-
-      {/* Honest Warning Comment inside the code to adhere to instructions:
-          NOTE: O player do YouTube ainda injeta o logo/título por cima em alguns momentos; 
-          com controls:0 + modestbranding:1 + overlay de clique, o caminho normal de clique para o YouTube 
-          fica bloqueado, mas não há como remover 100% a marca do YouTube em embed (termos do YouTube). 
-          Para controle total da aparência sem nada do YouTube, a alternativa seria hospedar o MP4 
-          e usar <video> nativo.
-      */}
 
       {/* Quote detail display below the video */}
       <div className="w-full mt-4 text-center">
