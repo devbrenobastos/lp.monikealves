@@ -213,15 +213,15 @@ export const Hero: React.FC = () => {
         <div className="max-w-content mx-auto px-5 md:px-10 grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-6 text-center divide-y divide-cream/45 sm:divide-y-0 pt-2">
           <div className="flex flex-col items-center sm:border-r sm:border-cream sm:pr-6 py-4 sm:py-0">
             <span className="font-mono text-mono-data text-amber font-semibold">
-              <CountUp end={5} prefix="+" suffix="MM" />
+              <CountUp end={8} prefix="+" suffix="MM" />
             </span>
             <span className="font-sans text-body-s text-ink-2"><T>em vendas geradas</T></span>
           </div>
           <div className="flex flex-col items-center sm:border-r sm:border-cream sm:px-6 py-4 sm:py-0">
             <span className="font-mono text-mono-data text-ink font-semibold">
-              <CountUp end={10.4} decimals={1} suffix="k" />
+              <CountUp end={2} prefix="+" suffix="MM" />
             </span>
-            <span className="font-sans text-body-s text-ink-2"><T>acompanham no Instagram</T></span>
+            <span className="font-sans text-body-s text-ink-2"><T>gerenciados em anúncios</T></span>
           </div>
           <div className="flex flex-col items-center sm:pl-6 py-4 sm:py-0">
             <span className="font-mono text-mono-data text-ink font-semibold">
