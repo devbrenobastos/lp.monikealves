@@ -229,9 +229,9 @@ export const Resultados: React.FC = () => {
           </div>
           <div className="py-24 sm:py-0 flex flex-col items-center sm:px-6">
             <span className="font-mono text-mono-data text-ink font-semibold block mb-1">
-              <CountUp end={200} prefix="+" />
+              <CountUp end={6} prefix="+" suffix=" anos" />
             </span>
-            <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>Dras. atendidas</T></span>
+            <span className="font-sans text-[16px] md:text-body-s text-ink-2 text-wrap-balance"><T>posicionando Doutoras de HOF</T></span>
           </div>
         </div>
       </div>

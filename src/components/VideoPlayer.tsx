@@ -61,51 +61,51 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ title, quote, videoSrc
     };
   }, [videoSrc]);
 
-  const handlePlayToggle = async () => {
-    if (!isLoaded) {
-      setIsLoaded(true);
-      await loadYoutubeAPI();
-      
-      // Allow DOM to update and render the iframe container element
-      setTimeout(() => {
-        playerRef.current = new window.YT.Player(`yt-player-${videoSrc}`, {
-          height: '100%',
-          width: '100%',
-          videoId: videoSrc,
-          playerVars: {
-            autoplay: 1,
-            controls: 0,
-            modestbranding: 1,
-            rel: 0,
-            fs: 0,
-            disablekb: 1,
-            iv_load_policy: 3,
-            playsinline: 1,
-            origin: window.location.origin
-          },
-          events: {
-            onReady: (event: any) => {
-              event.target.playVideo();
-              setIsPlaying(true);
-            },
-            onStateChange: (event: any) => {
-              if (event.data === 1) {
-                setIsPlaying(true);
-              } else if (event.data === 2 || event.data === 0) {
-                // If paused or ended, return to poster
-                setIsPlaying(false);
-                setIsLoaded(false);
-                if (playerRef.current) {
-                  try {
-                    playerRef.current.destroy();
-                  } catch (e) {}
-                  playerRef.current = null;
+  useEffect(() => {
+    if (isLoaded) {
+      loadYoutubeAPI().then(() => {
+        // Allow DOM to update and render the iframe container element
+        setTimeout(() => {
+          if (!isLoaded) return;
+          try {
+            playerRef.current = new window.YT.Player(`yt-player-${videoSrc}`, {
+              events: {
+                onStateChange: (event: any) => {
+                  if (event.data === 1) {
+                    setIsPlaying(true);
+                  } else if (event.data === 2 || event.data === 0) {
+                    // If paused or ended, return to poster
+                    setIsPlaying(false);
+                    setIsLoaded(false);
+                    if (playerRef.current) {
+                      try {
+                        playerRef.current.destroy();
+                      } catch (e) {}
+                      playerRef.current = null;
+                    }
+                  }
                 }
               }
-            }
+            });
+          } catch (e) {
+            console.error("Error loading YouTube Player:", e);
           }
-        });
-      }, 50);
+        }, 100);
+      });
+    } else {
+      if (playerRef.current) {
+        try {
+          playerRef.current.destroy();
+        } catch (e) {}
+        playerRef.current = null;
+      }
+    }
+  }, [isLoaded, videoSrc]);
+
+  const handlePlayToggle = () => {
+    if (!isLoaded) {
+      setIsLoaded(true);
+      setIsPlaying(true);
     } else {
       if (playerRef.current) {
         if (isPlaying) {
@@ -121,6 +121,9 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ title, quote, videoSrc
             playerRef.current = null;
           }
         }
+      } else {
+        setIsPlaying(false);
+        setIsLoaded(false);
       }
     }
   };
@@ -179,7 +182,14 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ title, quote, videoSrc
         {isLoaded && (
           <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden rounded-[16px]">
             <div className="absolute w-[427%] h-[135%] -left-[163.5%] -top-[17.5%] pointer-events-none">
-              <div id={`yt-player-${videoSrc}`} className="w-full h-full" />
+              <iframe 
+                id={`yt-player-${videoSrc}`} 
+                className="w-full h-full"
+                src={`https://www.youtube.com/embed/${videoSrc}?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&fs=0&disablekb=1&iv_load_policy=3&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`}
+                title={title}
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+              />
             </div>
           </div>
         )}

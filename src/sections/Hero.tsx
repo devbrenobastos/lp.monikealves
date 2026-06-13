@@ -214,9 +214,9 @@ export const Hero: React.FC = () => {
           </div>
           <div className="flex flex-col items-center sm:pl-6 py-4 sm:py-0">
             <span className="font-mono text-mono-data text-ink font-semibold">
-              <CountUp end={200} prefix="+" />
+              <CountUp end={6} prefix="+" suffix=" anos" />
             </span>
-            <span className="font-sans text-body-s text-ink-2"><T>Dras. atendidas</T></span>
+            <span className="font-sans text-body-s text-ink-2"><T>posicionando Doutoras de HOF</T></span>
           </div>
         </div>
       </div>
