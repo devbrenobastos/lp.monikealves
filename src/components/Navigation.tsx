@@ -149,7 +149,7 @@ export const Navigation: React.FC = () => {
     }
   };
 
-  const whatsappUrl = "https://wa.me/556596679578?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais";
+  const whatsappUrl = "https://wa.me/556596684611?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais";
 
   const handleApplyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -214,7 +214,7 @@ export const Navigation: React.FC = () => {
               </a>
             ))}
             <a
-              href="https://wa.me/556596679578?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais"
+              href="https://wa.me/556596684611?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais"
               onClick={handleApplyClick}
               className="inline-flex items-center justify-center bg-olive text-paper hover:bg-olive-h px-5 py-2 rounded-full font-sans font-semibold text-body-s transition-all duration-300 min-h-[40px] whitespace-nowrap ml-[16px]"
             >
@@ -286,7 +286,7 @@ export const Navigation: React.FC = () => {
 
           <div className="mt-8 pb-8">
             <a
-              href="https://wa.me/556596679578?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais"
+              href="https://wa.me/556596684611?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais"
               onClick={handleApplyClick}
               className="w-full inline-flex items-center justify-center bg-olive text-paper hover:bg-olive-h py-4 rounded-[10px] font-sans font-semibold text-[16px] min-h-[48px] whitespace-nowrap transition-colors"
             >

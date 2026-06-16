@@ -7,7 +7,7 @@ import { Eyebrow } from '../components/Eyebrow';
 export const CTAFinal: React.FC = () => {
   const revealRef = useReveal();
 
-  const whatsappUrl = "https://wa.me/556596679578?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais";
+  const whatsappUrl = "https://wa.me/556596684611?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais";
 
   return (
     <section id="aplicar" className="py-[clamp(56px,9vw,80px)] md:py-32 bg-panel border-b border-cream relative overflow-hidden">

@@ -48,7 +48,7 @@ export const QuemSouEu: React.FC = () => {
 
   const handleApplyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const whatsappUrl = "https://wa.me/556596679578?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais";
+    const whatsappUrl = "https://wa.me/556596684611?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais";
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -94,7 +94,7 @@ export const QuemSouEu: React.FC = () => {
 
           <div>
             <a 
-              href="https://wa.me/556596679578?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais" 
+              href="https://wa.me/556596684611?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais" 
               onClick={handleApplyClick}
               className="inline-flex items-center justify-center border border-olive text-olive hover:bg-olive hover:text-paper px-6 py-3 rounded-full font-sans font-semibold text-body-s transition-all duration-300 transform hover:-translate-y-[1px] active:translate-y-0 min-h-[44px] w-full md:w-auto text-center"
             >
